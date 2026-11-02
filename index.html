@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0d1024" />
+  <meta name="description" content="STAI... ASTA E AI?! — o mini-prezentare animată și interactivă despre inteligența artificială, pentru copii de 12 ani." />
+  <title>STAI... ASTA E AI?! 🤯</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#slide-1" aria-label="Acasă"><span class="brand-mark">✳</span> STAI... ASTA E AI?!</a>
+      <div class="top-actions">
+        <button class="icon-btn" id="timerToggle" aria-label="Pauză cronometru" title="Pauză / continuă cronometrul">Ⅱ</button><span class="clock" id="clock" aria-label="Timp scurs">00:00</span>
+        <button class="icon-btn notes-toggle" id="notesToggle" title="Arată notițele prezentatorului (N)" aria-label="Arată notițele prezentatorului">🎙️ <span>Notițe</span></button>
+        <button class="icon-btn" id="fullscreenToggle" title="Ecran complet (F)" aria-label="Ecran complet">⛶</button>
+      </div>
+    </header>
+    <div class="mission-track" aria-hidden="true"><div id="missionFill"></div></div><main class="stage" id="stage" >
+      <section class="slide active slide-intro" id="slide-1" aria-labelledby="slide1title" data-duration="45">
+        <div class="halftone"></div>
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="live-dot"></span> MISIUNE SECRETĂ · LEVEL 01</div>
+          <h1 id="slide1title">STAI...<br/><span>ASTA E AI?!</span><span class="explosion">🤯</span></h1>
+          <p class="big-sub">AI nu e magie. Dar uneori <em>pare!</em></p>
+          <p class="small-sub">10 minute · 7 niveluri · 1 întrebare uriașă</p>
+          <p class="action-instruction" data-action-icon="🚀">Apasă „Start misiune” și hai să descoperim AI!</p><div class="intro-buttons"><button class="primary" data-next>START MISIUNE <span>→</span></button></div>
+        </div>
+        <div class="intro-art" aria-hidden="true">
+          <div class="burst">✦</div>
+          <div class="bubble bubble-1">POV: <b>AI</b> e peste tot 👀</div>
+          <div class="robot"><div class="antena"></div><div class="ears"></div><div class="robot-head"><span class="eye eye-left"></span><span class="eye eye-right"></span><span class="smile"></span></div><div class="robot-body"><span class="heart">★</span></div></div>
+          <div class="bubble bubble-2">PIXEL · detectiv de tipare</div><div class="sidekick"><div class="pup"><i></i><i></i><b>●</b></div><span>HAMLET<br/>super-cățel curios</span></div>
+          <div class="spark spark-1">✴</div><div class="spark spark-2">✧</div>
+        </div>
+      </section>
+
+      <section class="slide slide-everywhere" id="slide-2" aria-labelledby="slide2title" data-duration="60">
+        <div class="eyebrow">LEVEL 02 · AI ÎN VIAȚA REALĂ</div>
+        <h2 id="slide2title">E DEJA <span class="accent-yellow">PESTE TOT.</span> 👀</h2>
+        <p class="lead action-instruction" data-action-icon="👀">Atinge un card ca să descoperi ce face AI în culise.</p>
+        <div class="use-grid">
+          <button class="use-card" data-reveal="youtube"><span class="use-emoji">📱</span><strong>For You / Recomandări</strong><span class="use-caption">„De unde știe ce-mi place?”</span><span class="card-tag">TAP ME ↗</span></button>
+          <button class="use-card" data-reveal="face"><span class="use-emoji">😎</span><strong>Face Unlock</strong><span class="use-caption">„Cum mă recunoaște?”</span><span class="card-tag">TAP ME ↗</span></button>
+          <button class="use-card" data-reveal="games"><span class="use-emoji">🎮</span><strong>Jocuri și NPC-uri</strong><span class="use-caption">„Cum reacționează?”</span><span class="card-tag">TAP ME ↗</span></button>
+          <button class="use-card" data-reveal="chat"><span class="use-emoji">🤖</span><strong>Chatboți AI</strong><span class="use-caption">„De unde scot răspunsurile?”</span><span class="card-tag">TAP ME ↗</span></button>
+        </div>
+        <div class="reveal-box" id="useReveal" aria-live="polite" hidden></div>
+      </section>
+
+      <section class="slide slide-training" id="slide-3" aria-labelledby="slide3title" data-duration="105">
+        <div class="eyebrow">LEVEL 03 · TRAINING ARC 🐾</div>
+        <h2 id="slide3title">CUM <span class="accent-pink">ÎNVAȚĂ</span> AI?</h2>
+        <p class="lead action-instruction" data-action-icon="🐾"><b>Tu ești antrenorul lui Pixel!</b> Spune-i ce animal vede. După 5 exemple, îl testăm cu unul nou.</p>
+        <div class="train-layout">
+          <div class="training-card">
+            <div class="training-top"><span id="trainStep">1 · ÎNVAȚĂ-L PE PIXEL</span><span id="xpText">0 / 5 exemple</span></div>
+            <div class="xp-track"><div id="xpFill" class="xp-fill"></div></div>
+            <div class="training-screen"><div class="animal-example" id="trainingAnimal" role="img" aria-label="Câine">🐶</div><strong id="animalQuestion" class="action-instruction" data-action-icon="👀">Ce animal este? Arată-i lui Pixel.</strong><div class="training-status" id="trainingStatus" aria-live="polite">Votați în clasă, apoi apăsați CÂINE sau PISICĂ.</div></div>
+            <div class="label-choices" id="labelChoices"><button class="primary" data-label="CÂINE">CÂINE</button><button class="secondary" data-label="PISICĂ">PISICĂ</button></div>
+            <button class="primary train-button" id="trainBtn" hidden>VEZI PREDICȚIA LUI PIXEL →</button>
+            <button class="secondary train-reset" id="trainReset">↺ Reîncepe</button>
+          </div>
+          <div class="examples-card">
+            <div class="examples-label">2 · EXEMPLELE DIN CARE ÎNVAȚĂ</div><span class="demo-label">SIMULARE DIDACTICĂ · fără model AI real</span>
+            <div class="examples-row" id="examplesRow"><div class="empty-example">? <span>Aici apar animalele etichetate de voi.</span></div></div>
+            <div class="test-card" id="testCard">
+              <small class="test-heading">3 · TESTUL</small>
+              <div class="test-icon" role="img" aria-label="Un câine nou, pentru test">🐕‍🦺</div>
+              <div class="test-copy"><strong>Ce animal este?</strong><p class="test-invitation">Să vedem dacă Pixel a învățat.</p><p class="action-instruction" data-action-icon="🗳️" id="testPrediction" aria-live="polite">Mai întâi, etichetați cele 5 exemple din stânga.</p></div>
+            </div>
+            <div class="prediction-reveal" id="predictionReveal" hidden tabindex="-1" role="status"><span class="reveal-kicker">✦ PIXEL PREZICE ✦</span><strong>CÂINE!</strong><span class="reveal-paw" aria-hidden="true">🐾</span><p>Animal nou. Tipare cunoscute.</p></div>
+            <p class="prediction-disclaimer" id="predictionDisclaimer" hidden>Simulare: răspunsul este pregătit. Un model AI real poate greși.</p>
+            <div class="bottom-callout">💡 <b>Ideea de reținut:</b> la antrenare, AI caută tipare în exemple. La test, încearcă să recunoască un caz nou. Poate greși!</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="slide slide-words" id="slide-4" aria-labelledby="slide4title" data-duration="120">
+        <div class="eyebrow">LEVEL 04 · GUESS THE NEXT WORD</div>
+        <h2 id="slide4title">CUM POATE AI <span class="accent-cyan">SĂ VORBEASCĂ?</span></h2>
+        <p class="lead action-instruction" data-action-icon="🧩" id="wordInstruction"><b>1 · Voi sunteți modelul!</b> Citiți propoziția, votați în clasă și alegeți ce s-ar potrivi în spațiul liber.</p>
+        <div class="word-workshop">
+          <div class="word-context"><span class="small-tag">CONTEXT = CE A CITIT AI PÂNĂ ACUM</span><p class="context-definition">Mesajele și textul deja scris îi dau indicii despre ce se potrivește mai departe.</p><p class="user-speech"><mark class="context-clue">Mi-e foame!</mark> Aș mânca o <span class="word-gap">___</span></p></div>
+          <div class="choices" id="wordChoices"><button class="choice" data-word="pizza">🍕 pizza</button><button class="choice" data-word="rachetă">🚀 rachetă</button><button class="choice" data-word="pernă">🛏️ pernă</button></div>
+          <p class="word-response" id="wordResponse" aria-live="polite">Ce indiciu vă ajută să alegeți? „Mi-e foame!”</p>
+          <div class="word-generation" id="wordGeneration" hidden>
+            <span class="small-tag">2 · ACUM PIXEL CONTINUĂ, BUCATĂ CU BUCATĂ</span>
+            <p id="generatedSentence" aria-live="polite"></p>
+            <button class="primary" id="nextChunk">ADAUGĂ URMĂTOAREA BUCATĂ →</button>
+            <p id="chunkExplanation">Apasă și urmărește cum fiecare bucată nouă devine parte din context.</p>
+          </div>
+        </div>
+        <div class="context-lab"><button class="secondary" id="contextToggle">🌀 SCHIMBĂ CONTEXTUL</button><span id="contextHint">Simulare cu variante pregătite · fără model AI real.</span></div>
+        <div class="analogy-line"><b>Secretul unui chatbot:</b> a învățat tipare din multe texte. Folosește textul pe care îl are în față — contextul — pentru a calcula ce bucată ar putea urma. O adaugă și repetă. Așa construiește răspunsul!</div>
+
+      </section>
+
+      <section class="slide slide-boss" id="slide-5" aria-labelledby="slide5title" data-duration="105">
+        <div class="eyebrow">LEVEL 05 · BOSS FIGHT ⚠️</div>
+        <h2 id="slide5title">AI POATE <span class="accent-yellow">SĂ DEA FAIL?</span></h2>
+        <p class="action-instruction" data-action-icon="🗳️">Citiți afirmația, votați în clasă, apoi alegeți ADEVĂRAT sau FALS.</p><div class="boss-layout">
+          <div class="boss-figure" aria-hidden="true"><div class="boss-halo">⚡</div><div class="boss-face">🤖</div><div class="boss-caption">CĂPITANUL SIGUR-DE-EL<br/>„Sursa? Am visat-o.”</div></div>
+          <div class="quiz-panel"><div class="small-tag">ADEVĂRAT SAU FALS?</div><div class="quiz-progress" id="quizProgress">ÎNTREBAREA 1 / 3</div><h3 id="quizQuestion">AI poate inventa informații și totuși să sune foarte sigur.</h3><div class="answer-row"><button class="answer" id="trueBtn">✅ ADEVĂRAT</button><button class="answer" id="falseBtn">❌ FALS</button></div><div class="quiz-feedback" id="quizFeedback" aria-live="polite">Alege răspunsul.</div><button class="secondary next-question" id="nextQuestion" disabled>URMĂTOAREA →</button></div>
+        </div>
+        <div class="boss-rule">Regula de aur: <strong>AI poate greși. Verifică informațiile importante!</strong></div>
+      </section>
+
+      <section class="slide slide-power" id="slide-6" aria-labelledby="slide6title" data-duration="105">
+        <div class="eyebrow">LEVEL 06 · HERO MODE ACTIVATED 🦸</div>
+        <h2 id="slide6title">AI: <span class="accent-pink">CHEAT CODE</span> SAU SUPERPUTERE?</h2>
+        <p class="lead action-instruction" data-action-icon="🧠">Alege mesajul care te ajută să înveți, apoi explorează și celălalt card.</p>
+        <div class="prompt-grid"><button class="prompt-card" id="badPrompt"><span class="prompt-icon">😴</span><span class="prompt-heading">MODUL „FĂ ÎN LOCUL MEU”</span><strong>„Rezolvă-mi tema. Dă-mi doar răspunsurile.”</strong><span class="card-tag">ALEGE ↗</span></button><button class="prompt-card" id="goodPrompt"><span class="prompt-icon">🧠</span><span class="prompt-heading">MODUL „LEVEL UP”</span><strong>„Explică-mi fracțiile folosind pizza, apoi testează-mă!”</strong><span class="card-tag">ALEGE ↗</span></button></div>
+        <p class="prompt-exploration action-instruction" data-action-icon="👆" id="promptExploration" aria-live="polite">Explorează ambele carduri · 0 / 2</p>
+        <div id="mentorReveal" class="mentor-reveal" hidden>
+          <div class="prompt-feedback" id="promptFeedback">🏆 AI ca antrenor: tu gândești, el te ajută să exersezi.</div>
+          <div class="mentor-badge"><span class="anime-hero" aria-hidden="true"><i></i></span><b>NOVA · puterea ta: întrebările bune</b></div>
+        </div>
+        <button class="secondary vir-button" id="virButton" aria-haspopup="dialog" aria-controls="virModal">⚠️ VIR · Very Important Rule <span>REGULA FOARTE IMPORTANTĂ →</span></button>
+
+      </section>
+
+      <section class="slide slide-finale" id="slide-7" aria-labelledby="slide7title" data-duration="60">
+        <div class="finale-confetti" aria-hidden="true"><span>✦</span><span>★</span><span>✴</span><span>✧</span><span>★</span><span>✦</span></div>
+        <div class="eyebrow">FINAL BOSS DEFEATED · MISSION COMPLETE</div>
+        <h2 id="slide7title">SUPERPUTERILE <span class="accent-yellow">DE LUAT ACASĂ.</span></h2>
+        <p class="action-instruction" data-action-icon="👉">Apasă săgețile de sub card și descoperă toate cele 9 superputeri. Apoi deblochezi ultima provocare!</p><div class="takeaway-slider" role="region" aria-roledescription="carusel" aria-label="Superputerile de luat acasă"><div class="takeaway-grid" id="takeawayTrack" aria-live="polite">
+          <article><span aria-hidden="true">🔎</span><div><h3>Indiciu ≠ dovadă</h3><p>O informație ajută sistemul să estimeze sau să aleagă. Nu garantează că are dreptate.</p></div></article>
+          <article><span aria-hidden="true">📱</span><div><h3>AI e deja în jurul tău</h3><p>Recomandă clipuri, compară fețe, generează text. Nu îți citește gândurile!</p></div></article>
+          <article><span aria-hidden="true">🎮</span><div><h3>Reguli ≠ învățare</h3><p>Un NPC poate urma reguli fixe. Nu orice personaj isteț învață din experiență.</p></div></article>
+          <article><span aria-hidden="true">🐾</span><div><h3>Exemple → tipare → predicții</h3><p>La antrenare, AI învață tipare din exemple. La test, încearcă un caz nou. Exemplele corecte contează.</p></div></article>
+          <article><span aria-hidden="true">💬</span><div><h3>Context = textul disponibil</h3><p>Mesajele și textul deja scris dau indicii despre ce se potrivește mai departe.</p></div></article>
+          <article><span aria-hidden="true">🧩</span><div><h3>Textul apare bucată cu bucată</h3><p>Chatbotul adaugă tokenuri și repetă. Un token poate fi un cuvânt, o parte de cuvânt sau un semn.</p></div></article>
+          <article><span aria-hidden="true">🕵️</span><div><h3>Sună sigur? Tot verificăm!</h3><p>AI poate inventa fapte și surse. Imaginile pot fi generate. Verifică informațiile importante.</p></div></article>
+          <article><span aria-hidden="true">🧠</span><div><h3>AI e antrenorul, tu înveți</h3><p>Cere explicații, indicii și exerciții. Rezolvă tu și verifică dacă ai înțeles.</p></div></article>
+          <article><span aria-hidden="true">🔒</span><div><h3>Protejează-ți datele</h3><p>Nu trimite parole, adresa ta sau alte date personale. Tu decizi cum folosești AI.</p></div></article>
+        </div>
+        <div class="takeaway-controls"><button class="secondary" id="takeawayPrev" aria-label="Ideea anterioară">←</button><span id="takeawayCount" aria-live="polite">1 / 9</span><button class="secondary" id="takeawayNext" aria-label="Ideea următoare">→</button></div></div>
+        <div class="exit-ticket" id="exitTicket" hidden><strong class="action-instruction" data-action-icon="🎯">ULTIMA PROVOCARE: AI spune un fapt surprinzător. Alege ce faci!</strong><div><button class="secondary" data-exit="copy">Îl cred imediat</button><button class="secondary" data-exit="check">Caut o sursă de încredere</button></div><p id="exitFeedback" aria-live="polite">Alege și deblochează insigna de detectiv.</p></div><button class="secondary" id="restartBtn">↺ REIA MISIUNEA</button>
+      </section>
+    </main>
+    <aside id="speakerNotes" class="speaker-notes" aria-label="Notițe prezentator" hidden><div class="notes-top"><strong>🎙️ NOTE PENTRU PREZENTATOR</strong><button id="notesClose" aria-label="Închide notițele">✕</button></div><p id="noteContent"></p></aside>
+    <footer class="navbar"><button class="nav-btn" id="prevBtn" aria-label="Slide anterior">← <span>ÎNAPOI</span></button><div class="nav-center"><div class="progress-pips" id="pips" aria-label="Progres prezentare"></div><span class="slide-count" id="slideCount">01 / 07</span></div><button class="nav-btn primary" id="nextBtn"><span>URMĂTORUL</span> →</button></footer>
+  </div>
+  <dialog id="badgeModal" class="word-error-modal word-success-modal" aria-labelledby="badgeTitle" aria-describedby="badgeExplanation">
+    <div class="error-smiley" aria-hidden="true">🏅</div>
+    <h3 id="badgeTitle">✦ Insignă de detectiv deblocată!</h3>
+    <p class="success-loop">DETECTIV DE TIPARE</p>
+    <p id="badgeExplanation">Ai ales să verifici! Curiozitatea și întrebările bune sunt superputerile tale.</p>
+    <button class="primary" id="badgeRestart">↺ REIA MISIUNEA</button>
+  </dialog>
+  <dialog id="virModal" class="word-error-modal vir-modal" aria-labelledby="virTitle" aria-describedby="virExplanation">
+    <div class="error-smiley" aria-hidden="true">🔒</div>
+    <h3 id="virTitle">VIR · Very Important Rule</h3>
+    <p class="vir-headline">Datele tale personale rămân la tine!</p>
+    <p id="virExplanation">Nu trimite unui chatbot <b>parole, adresa de acasă, numărul de telefon, școala sau fotografii cu documente personale.</b></p>
+    <p>Pentru o explicație despre fracții, AI nu are nevoie să știe unde locuiești. Dacă nu ești sigur ce poți trimite, întreabă un adult de încredere.</p>
+    <button class="primary" id="virClose">AM ÎNȚELES! ÎMI PROTEJEZ DATELE ✓</button>
+  </dialog>
+  <dialog id="clueModal" class="word-error-modal clue-modal" aria-labelledby="clueModalTitle">
+    <h3 id="clueModalTitle">🔎 Care este indiciul?</h3>
+    <p class="clue-modal-intro">Un indiciu este o informație care ajută sistemul să aleagă sau să estimeze ceva.</p>
+    <div class="clue-definition" id="clueDefinition"></div>
+    <button class="primary" id="clueModalClose">AM ÎNȚELES! ✓</button>
+  </dialog>
+  <dialog id="exitResultModal" class="word-error-modal" aria-labelledby="exitResultTitle" aria-describedby="exitResultExplanation">
+    <div class="error-smiley" id="exitResultIcon" aria-hidden="true"></div>
+    <h3 id="exitResultTitle"></h3>
+    <p id="exitResultExplanation"></p>
+    <button class="primary" id="exitResultClose"></button>
+  </dialog>
+  <dialog id="promptResultModal" class="word-error-modal" aria-labelledby="promptResultTitle" aria-describedby="promptResultChoice promptResultExplanation">
+    <div class="error-smiley" id="promptResultIcon" aria-hidden="true"></div>
+    <h3 id="promptResultTitle"></h3>
+    <p class="quiz-result-question" id="promptResultChoice"></p>
+    <p id="promptResultExplanation"></p>
+    <button class="primary" id="promptResultClose"></button>
+  </dialog>
+  <dialog id="quizResultModal" class="word-error-modal" aria-labelledby="quizResultTitle" aria-describedby="quizResultAnswer quizResultExplanation">
+    <div class="error-smiley" id="quizResultIcon" aria-hidden="true"></div>
+    <h3 id="quizResultTitle"></h3>
+    <p class="quiz-result-question" id="quizResultQuestion"></p>
+    <p class="success-loop" id="quizResultAnswer"></p>
+    <p id="quizResultExplanation"></p>
+    <button class="primary" id="quizResultClose">AM ÎNȚELES! →</button>
+  </dialog>
+  <dialog id="wordSuccessModal" class="word-error-modal word-success-modal" aria-labelledby="wordSuccessTitle" aria-describedby="wordSuccessExplanation">
+    <div class="error-smiley" aria-hidden="true">✦</div>
+    <h3 id="wordSuccessTitle">AȘA APARE UN RĂSPUNS!</h3>
+    <p class="success-loop">context → bucată nouă → repetă!</p>
+    <p id="wordSuccessExplanation">Bucățile se numesc <b>tokenuri</b>: pot fi cuvinte, părți de cuvinte sau semne. Textul poate suna bine și totuși să fie greșit.</p>
+    <button class="primary" id="wordSuccessClose">AM ÎNȚELES! ✓</button>
+  </dialog>
+  <dialog id="wordErrorModal" class="word-error-modal" aria-labelledby="wordErrorTitle" aria-describedby="wrongSentence wordErrorHint">
+    <div class="error-smiley" aria-hidden="true">😄</div>
+    <h3 id="wordErrorTitle">Ups! Sună cam trăsnit!</h3>
+    <p id="wrongSentence" class="wrong-sentence"></p>
+    <p id="wordErrorHint">E o idee amuzantă! Ce variantă se potrivește mai bine cu indiciul evidențiat?</p>
+    <button class="primary" id="wordErrorClose">MAI ÎNCERC O DATĂ ↺</button>
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
