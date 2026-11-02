@@ -67,3 +67,9 @@ Ritmul recomandat rămâne 45 + 60 + 105 + 120 + 105 + 105 + 60 = 600 secunde. T
 Butonul RO / EN din dreapta sus, lângă ecran complet, schimbă limba fără a pierde progresul. Alegerea se păstrează local și la reluarea misiunii. Textele engleze sunt în `translations.js`; `i18n.js` localizează textele dinamice și atributele de accesibilitate, păstrând datele exercițiilor. Ilustrațiile traduse sunt în `assets/cards/*-en.svg`.
 
 Pasul 6 include o trusă interactivă cu structurarea lecției, analogii și explicare proprie, exersarea reamintirii cu feedback și recapitulări în zile diferite. Exercițiile sunt pregătite didactic. Surse pentru tehnicile de reamintire și distribuire: [AERO](https://www.edresearch.edu.au/guides-resources/practice-guides/spacing-and-retrieval-practice-guide-full-publication), [Carpenter et al., 2022](https://doi.org/10.1038/s44159-022-00089-1).
+
+### Întrebările copiilor
+
+La final, butonul „Întrebările voastre · 11 răspunsuri” deschide un bonus cu toate cele 11 întrebări primite, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. Introducerea definește explicit AI printr-un puzzle, antrenamentul la sport și o rețetă digitală, accesibile din „Ce este AI?”; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
+
+Întrebarea despre următorii 10 ani include un singur grafic schematic, de la telegraf (1844) la AI generativ (2022–2024). Axa anilor este proporțională; înălțimea curbei nu reprezintă un indicator măsurat de progres sau inteligență. Sursele istorice sunt legate în răspuns. Nu este o predicție și nu echivalează progresul telecomunicațiilor cu două lansări de produse AI.

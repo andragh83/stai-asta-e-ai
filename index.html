@@ -34,7 +34,7 @@
           <h1 id="slide1title">STAI...<br/><span>ASTA E AI?!</span><span class="explosion">🤯</span></h1>
           <p class="big-sub">AI nu e magie. Dar uneori <em>pare!</em></p>
           <p class="small-sub">10 minute · 7 niveluri · 1 întrebare uriașă</p>
-          <p class="action-instruction" data-action-icon="🚀">Apasă „Start misiune” și hai să descoperim AI!</p><div class="intro-buttons"><button class="primary" data-next>START MISIUNE <span>→</span></button></div>
+          <p class="action-instruction" data-action-icon="🚀">Apasă „Start misiune” și hai să descoperim AI!</p><div class="intro-buttons"><button class="primary" data-next>START MISIUNE <span>→</span></button><button class="secondary character-question" id="characterQuestionOpen" aria-haspopup="dialog" aria-controls="characterQuestionModal">🤖 Ce este AI?</button></div>
         </div>
         <div class="intro-art" aria-hidden="true">
           <div class="ai-hud" role="img" aria-label="Interfață AI holografică cu inele luminoase">
@@ -83,7 +83,7 @@
             <div class="train-answer-action" id="trainAnswerAction" hidden><button class="primary train-button" id="trainBtn" hidden>VEZI RĂSPUNSUL LUI AI →</button></div>
             <div class="prediction-reveal" id="predictionReveal" hidden tabindex="-1" role="status"><span class="reveal-kicker">✦ AI CREDE CĂ ESTE ✦</span><strong>CÂINE!</strong><span class="reveal-paw" aria-hidden="true">🐾</span><p>Animal nou. Seamănă cu exemplele văzute.</p></div>
             <p class="prediction-disclaimer" id="predictionDisclaimer" hidden>Simulare: răspunsul este pregătit. Un model AI real poate greși.</p>
-            <details class="meme-credits"><summary>Sursele fotografiilor</summary><p>Meme-uri fără text: <a href="https://imgflip.com/memetemplate/Doge" target="_blank" rel="noopener">Doge</a>, <a href="https://imgflip.com/memetemplate/143985147/Polite-Cat" target="_blank" rel="noopener">Polite Cat</a>, <a href="https://imgflip.com/memetemplate/228704337/Walter-The-Dog" target="_blank" rel="noopener">Walter</a>, <a href="https://imgflip.com/memetemplate/Grumpy-Cat" target="_blank" rel="noopener">Grumpy Cat</a>, <a href="https://imgflip.com/memetemplate/131754603/smiling-dog" target="_blank" rel="noopener">Smiling Dog</a> (Imgflip). Test: <a href="https://commons.wikimedia.org/wiki/File:Shiba_Inu_in_snow.jpg" target="_blank" rel="noopener">Shiba Inu in snow — likeaduck</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; fără modificări.</p></details><div class="bottom-callout">💡 <b>Ideea de reținut:</b> AI vede exemple și învață ce au în comun. Apoi încearcă să recunoască un animal nou. Poate greși!</div>
+            <details class="meme-credits"><summary>Sursele fotografiilor</summary><p>Meme-uri fără text: <a href="https://imgflip.com/memetemplate/Doge" target="_blank" rel="noopener">Doge</a>, <a href="https://imgflip.com/memetemplate/143985147/Polite-Cat" target="_blank" rel="noopener">Polite Cat</a>, <a href="https://imgflip.com/memetemplate/228704337/Walter-The-Dog" target="_blank" rel="noopener">Walter</a>, <a href="https://imgflip.com/memetemplate/Grumpy-Cat" target="_blank" rel="noopener">Grumpy Cat</a>, <a href="https://imgflip.com/memetemplate/131754603/smiling-dog" target="_blank" rel="noopener">Smiling Dog</a> (Imgflip). Test: <a href="https://commons.wikimedia.org/wiki/File:Shiba_Inu_in_snow.jpg" target="_blank" rel="noopener">Shiba Inu in snow — likeaduck</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; fără modificări.</p></details><div class="bottom-callout">💡 <b>Ideea de reținut:</b> Ca la antrenamentul unui sport, AI învață din exemple și feedback. Caută ce au imaginile în comun, apoi încearcă să recunoască un animal nou. Poate greși!</div>
           </div>
         </div>
       </section>
@@ -104,9 +104,10 @@
           </div>
         </div>
         <p id="contextHint">Simulare cu variante pregătite · fără model AI real.</p>
+        <p class="truth-note">🧭 <b>Sună bine ≠ este verificat.</b> Un chatbot poate alege o continuare potrivită fără să verifice dacă este adevărată. Pentru fapte importante, caută dovezi.</p>
         <div class="word-takeaways" id="wordTakeaways" hidden aria-live="polite">
           <article class="knowledge-card"><span class="knowledge-icon" aria-hidden="true">🧠</span><div><span class="knowledge-label">DE REȚINUT · 1</span><h3>CONTEXT = CE A CITIT AI PÂNĂ ACUM</h3><p>Mesajele și textul deja scris îi dau indicii despre ce se potrivește mai departe. Fiecare bucată adăugată intră și ea în context.</p></div></article>
-          <article class="knowledge-card"><span class="knowledge-icon" aria-hidden="true">🔑</span><div><span class="knowledge-label">DE REȚINUT · 2</span><h3>SECRETUL UNUI CHATBOT</h3><p>A învățat din multe texte ce cuvinte și idei apar împreună. Folosește contextul, adaugă o bucată de text și repetă. Așa construiește răspunsul!</p></div></article>
+          <article class="knowledge-card"><span class="knowledge-icon" aria-hidden="true">🔑</span><div><span class="knowledge-label">DE REȚINUT · 2</span><h3>SECRETUL UNUI CHATBOT</h3><p>A învățat din multe texte ce cuvinte și idei apar împreună. Folosește contextul, adaugă o bucată de text și repetă. Așa construiește răspunsul!</p><div class="digital-recipe" aria-label="Analogia rețetei digitale"><span>🥕 Mesajul = ingrediente</span><span>📋 Calculele = instrucțiuni</span><span>🍲 Răspunsul = preparat</span></div></div></article>
         </div>
         <div class="context-lab" id="contextAction" hidden><button class="secondary" id="contextToggle">🌀 SCHIMBĂ CONTEXTUL</button></div>
 
@@ -142,7 +143,7 @@
         <div class="eyebrow">FINAL BOSS DEFEATED · MISSION COMPLETE</div>
         <h2 id="slide7title">SUPERPUTERILE <span class="accent-yellow">DE LUAT ACASĂ.</span></h2>
         <p class="action-instruction" data-action-icon="👉">Apasă săgețile de sub card și descoperă toate cele 8 superputeri. Apoi deblochezi ultima provocare!</p><div class="takeaway-slider" role="region" aria-roledescription="carusel" aria-label="Superputerile de luat acasă"><div class="takeaway-grid" id="takeawayTrack" aria-live="polite">
-          <article><span aria-hidden="true">🐾</span><div><h3>AI învață din exemple</h3><p>Vede multe exemple și învață ce au în comun. Apoi încearcă să recunoască ceva nou. Nu nimerește mereu!</p></div></article>
+          <article><span aria-hidden="true">🐾</span><div><h3>AI învață din exemple</h3><p>Ca un elev care rezolvă puzzle-uri, învață din multe exemple ce au în comun. Apoi încearcă ceva nou. Repetiția și feedbackul ajută la antrenare, dar nu garantează reușita!</p></div></article>
           <article><span aria-hidden="true">💬</span><div><h3>Contextul îl ajută să aleagă</h3><p>„Mi-e foame” ne duce cu gândul la pizza. AI folosește mesajele și textul deja scris pentru a alege ce urmează.</p></div></article>
           <article><span aria-hidden="true">🧩</span><div><h3>Tokenuri = bucăți de text</h3><p>AI citește și scrie în bucăți. Un token nu înseamnă neapărat un cuvânt!</p>
             <div class="token-examples">
@@ -157,12 +158,161 @@
           <article><span aria-hidden="true">🔒</span><div><h3>Datele personale rămân la tine</h3><p>Nu trimite parole, adresa, telefonul, școala sau documente personale. Dacă nu ești sigur, întreabă un adult de încredere.</p></div></article>
         </div>
         <div class="takeaway-controls"><button class="secondary" id="takeawayPrev" aria-label="Ideea anterioară">←</button><span id="takeawayCount" aria-live="polite">1 / 8</span><button class="secondary" id="takeawayNext" aria-label="Ideea următoare">→</button></div></div>
-        <div class="exit-ticket" id="exitTicket" hidden><strong class="action-instruction" data-action-icon="🎯">ULTIMA PROVOCARE: AI spune un fapt surprinzător. Alege ce faci!</strong><div><button class="secondary" data-exit="copy">Îl cred imediat</button><button class="secondary" data-exit="check">Caut o sursă de încredere</button></div><p id="exitFeedback" aria-live="polite">Alege și deblochează insigna de detectiv.</p></div><button class="secondary" id="restartBtn">↺ REIA MISIUNEA</button>
+        <div class="exit-ticket" id="exitTicket" hidden><strong class="action-instruction" data-action-icon="🎯">ULTIMA PROVOCARE: AI spune un fapt surprinzător. Alege ce faci!</strong><div><button class="secondary" data-exit="copy">Îl cred imediat</button><button class="secondary" data-exit="check">Caut o sursă de încredere</button></div><p id="exitFeedback" aria-live="polite">Alege și deblochează insigna de detectiv.</p></div><button class="secondary" id="restartBtn">↺ REIA MISIUNEA</button><button class="secondary student-questions-open" id="studentQuestionsOpen" aria-haspopup="dialog" aria-controls="studentQuestionsModal"><span aria-hidden="true">💬</span><span>ÎNTREBĂRILE VOASTRE · 11 RĂSPUNSURI</span></button>
       </section>
     </main>
     <aside id="speakerNotes" class="speaker-notes" aria-label="Notițe prezentator" hidden><div class="notes-top"><strong>🎙️ NOTE PENTRU PREZENTATOR</strong><button id="notesClose" aria-label="Închide notițele">✕</button></div><p id="noteContent"></p></aside>
     <footer class="navbar"><button class="nav-btn" id="prevBtn" aria-label="Slide anterior">← <span>ÎNAPOI</span></button><div class="nav-center"><div class="progress-pips" id="pips" aria-label="Progres prezentare"></div><span class="slide-count" id="slideCount">01 / 07</span></div><button class="nav-btn primary" id="nextBtn"><span>URMĂTORUL</span> →</button></footer>
   </div>
+  <dialog id="studentQuestionsModal" class="word-error-modal student-questions-modal" aria-labelledby="studentQuestionsTitle">
+<h3 id="studentQuestionsTitle">💬 Întrebările voastre</h3>
+<p>Bonus după misiune · Toate cele 11 întrebări au răspuns aici. Deschide întrebarea care te interesează.</p>
+<div class="student-questions-list">
+<details id="student-question-4"><summary><span class="student-question-title">Ce s-ar întâmpla dacă AI-ul nu ar mai exista? Ce înseamnă AI-ul?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 1, 2</p>
+<p>AI vine din engleză, de la Artificial Intelligence: inteligență artificială. Pentru AI care învață din date, gândește-te la un program antrenat să observe ce au exemplele în comun și să facă estimări, ca un elev care rezolvă un puzzle. AI nu înseamnă neapărat un robot.</p>
+<p>Dacă toate sistemele AI ar dispărea, unele traduceri automate, recomandări și funcții de recunoaștere ar lipsi sau ar trebui înlocuite. Oamenii ar face unele sarcini altfel. Internetul, calculatoarele și jocurile nu ar dispărea toate: nu orice program folosește AI.</p>
+<button class="secondary question-scene-link" data-question-slide="1">↗ VEZI PASUL 1</button>
+<button class="secondary question-scene-link" data-question-slide="2">↗ VEZI PASUL 2</button>
+</div></details>
+
+<details id="student-question-9"><summary><span class="student-question-title">Cum se antrenează un model de AI și de unde provin datele folosite?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 3, 4</p>
+<p>În demonstrația cu animale, voi oferiți exemple cu etichete: câine sau pisică. Într-un model real, antrenarea ajustează multe valori matematice, astfel încât modelul să facă mai puține greșeli pe sarcina de antrenare. Apoi este evaluat și cu exemple noi. Nu este suficient să memoreze răspunsurile.</p>
+<p>Datele pot fi texte, imagini, sunete sau măsurători. În funcție de sistem, pot proveni din seturi publice, colecții licențiate, exemple pregătite de oameni ori date generate. De exemplu, OpenAI descrie un amestec de informații publice, date de la parteneri și contribuții umane. Sursele diferă între modele; nu orice model folosește tot internetul.</p>
+<p>Exemplele greșite, dezechilibrate sau incomplete pot duce la rezultate greșite ori nedrepte. Contează calitatea datelor și respectarea drepturilor și a vieții private, nu doar cantitatea.</p>
+<button class="secondary question-scene-link" data-question-slide="3">↗ VEZI PASUL 3</button>
+<button class="secondary question-scene-link" data-question-slide="4">↗ VEZI PASUL 4</button>
+<div class="question-sources">
+<a href="https://openai.com/policies/how-chatgpt-and-our-foundation-models-are-developed/" target="_blank" rel="noopener">OpenAI · proveniența datelor</a>
+</div>
+</div></details>
+
+<details id="student-question-1"><summary><span class="student-question-title">Ar trebui să avem încredere în tot ceea ce ne spune AI?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 5, 7</p>
+<p>Nu. AI poate oferi informații utile, dar poate și inventa sau greși, chiar când sună foarte sigur. Un răspuns bine formulat nu este o dovadă.</p>
+<p>Pentru ceva important, compară cu manualul, o sursă oficială sau un adult de încredere. Cere sursa și verifică dacă există și dacă spune într-adevăr acel lucru.</p>
+<button class="secondary question-scene-link" data-question-slide="5">↗ VEZI PASUL 5</button>
+<button class="secondary question-scene-link" data-question-slide="7">↗ VEZI PASUL 7</button>
+</div></details>
+
+<details id="student-question-3"><summary><span class="student-question-title">De ce AI-ul știe că ceva este real sau fals?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 4, 5</p>
+<p>Nu știe automat. Un chatbot generează continuări potrivite contextului folosind ce a învățat din date. Ce sună probabil sau convingător poate fi totuși fals.</p>
+<p>Unele sisteme pot căuta surse sau folosi instrumente ca să verifice o afirmație. Și atunci trebuie verificate dovezile: o sursă poate fi greșită, veche sau citată nepotrivit. E ca un coleg care răspunde repede: îl întrebi și «De unde știi?».</p>
+<button class="secondary question-scene-link" data-question-slide="4">↗ VEZI PASUL 4</button>
+<button class="secondary question-scene-link" data-question-slide="5">↗ VEZI PASUL 5</button>
+</div></details>
+
+<details id="student-question-2"><summary><span class="student-question-title">Cum ne putem da seama dacă o imagine, un videoclip sau un mesaj a fost creat de inteligența artificială sau de o persoană?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 5, 7</p>
+<p>Nu putem afla întotdeauna sigur doar uitându-ne. O imagine ciudată poate fi o fotografie reală, iar una generată poate să nu aibă greșeli vizibile. Nici un text fără greșeli nu dovedește că a fost scris de AI.</p>
+<p>Caută cine a publicat primul, contextul și relatări independente. Pentru o imagine, poți căuta unde a mai apărut; pentru un video, caută și înregistrarea completă. Etichetele AI și detectoarele sunt indicii, nu verdicte sigure.</p>
+<p>Dacă primești un mesaj care pare de la un prieten și cere bani sau secrete, confirmă prin alt canal cunoscut. Nu distribui ceva îndoielnic doar pentru că pare real.</p>
+<button class="secondary question-scene-link" data-question-slide="5">↗ VEZI PASUL 5</button>
+<button class="secondary question-scene-link" data-question-slide="7">↗ VEZI PASUL 7</button>
+</div></details>
+
+<details id="student-question-11"><summary><span class="student-question-title">Este bine să folosim AI?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 6, 7</p>
+<p>Poate fi util, dacă îl folosești cu un scop bun și verifici rezultatele. Pentru învățare: cere o explicație, un indiciu sau un mini-test, apoi încearcă tu. Dacă doar copiezi tema, AI lucrează, dar tu nu exersezi.</p>
+<p>Protejează datele personale, respectă regulile profesorului și condițiile de vârstă ale aplicației și cere ajutorul unui adult când nu ești sigur. AI poate fi un instrument de ajutor, alături de profesori, colegi și experiențe reale.</p>
+<button class="secondary question-scene-link" data-question-slide="6">↗ VEZI PASUL 6</button>
+<button class="secondary question-scene-link" data-question-slide="7">↗ VEZI PASUL 7</button>
+</div></details>
+
+<details id="student-question-10"><summary><span class="student-question-title">De ce a fost creat AI dacă în viitor ne va putea înlocui unele locuri de muncă? Cine a creat AI? Este AI folositor sau a fost inventat doar pentru a ne ține ocupați?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 2, 6</p>
+<p>AI nu are un singur inventator. Mulți cercetători au contribuit de-a lungul timpului. John McCarthy a folosit numele «artificial intelligence» în propunerea din 1955 pentru întâlnirea de la Dartmouth din 1956, un moment important în istoria domeniului.</p>
+<p>A fost dezvoltat pentru a cerceta inteligența și a rezolva probleme: recunoaștere, calcule, traducere sau sprijin pentru oameni. Nu a fost inventat doar pentru divertisment. În site, îl folosim pentru explicații și exersare; unele aplicații pot însă urmări să te țină cât mai mult pe ecran.</p>
+<p>AI poate automatiza unele sarcini și poate schimba sau elimina unele posturi, dar la fel s-a întâmplat la fiecare avans tehnologic din istorie. Este adevărat că AI schimbă modul în care funcționează lumea în ziua de azi, dar depinde de noi, oamenii, să ne asigurăm că această schimbare merge în direcția bună.</p>
+<button class="secondary question-scene-link" data-question-slide="2">↗ VEZI PASUL 2</button>
+<button class="secondary question-scene-link" data-question-slide="6">↗ VEZI PASUL 6</button>
+<div class="question-sources">
+<a href="https://ai.dartmouth.edu/our-story" target="_blank" rel="noopener">Dartmouth · începuturile AI</a>
+<a href="https://www.ilo.org/resource/news/one-four-jobs-risk-being-transformed-genai-new-ilo%E2%80%93nask-global-index-shows" target="_blank" rel="noopener">ILO · AI și locurile de muncă</a>
+</div>
+</div></details>
+
+<details id="student-question-8"><summary><span class="student-question-title">Poate un AI să aibă vreodată conștiință sau emoții sau doar simulează înțelegerea?</span></summary><div class="student-question-answer">
+<p class="question-location">Legături cu prezentarea: pașii 1</p>
+<p>Un chatbot poate scrie «mă bucur» și poate răspunde empatic. Asta nu dovedește o emoție trăită. Nici cercurile și vocea unui personaj digital nu sunt dovezi că simte.</p>
+<p>Conștiința înseamnă aici să ai o experiență din interior, de exemplu cum se simte durerea sau bucuria. Nu avem dovezi științifice acceptate pe scară largă că actualele chatboturi au astfel de experiențe. Dacă un AI viitor ar putea avea conștiință rămâne o întrebare deschisă, fără un test universal acceptat.</p>
+<button class="secondary question-scene-link" data-question-slide="1">↗ VEZI PASUL 1</button>
+<div class="question-sources">
+<a href="https://arxiv.org/abs/2308.08708" target="_blank" rel="noopener">Cercetare · indicatori ai conștiinței în AI</a>
+</div>
+</div></details>
+
+<details id="student-question-5"><summary><span class="student-question-title">Dacă roboții și inteligența artificială vor deveni mai inteligenți decât oamenii, cine ar trebui să ia deciziile importante în lume? Crezi că într-o zi inteligența artificială va putea inventa lucruri la care oamenii nici măcar nu s-au gândit?</span></summary><div class="student-question-answer">
+<p class="question-location">Discuție bonus · răspuns adăugat aici</p>
+<p>Aici vorbim despre o posibilitate, nu despre un viitor sigur. A fi foarte bun la o sarcină nu înseamnă a ști ce este bine pentru toți. Deciziile care afectează oamenii ar trebui să rămână sub control și responsabilitate umană, cu reguli și posibilitatea de a le contesta. AI poate ajuta cu informații, dar nu ar trebui să fie «șeful lumii».</p>
+<p>AI poate găsi soluții noi pe care oamenii nu le-au găsit înainte. De exemplu, AlphaTensor a descoperit noi metode de a face anumite calcule matematice. Cercetătorii verifică rezultatele. A inventa ceva nou nu înseamnă automat a avea dorințe sau conștiință.</p>
+<div class="question-sources">
+<a href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" rel="noopener">UNESCO · responsabilitatea umană</a>
+<a href="https://deepmind.google/blog/discovering-novel-algorithms-with-alphatensor/" target="_blank" rel="noopener">Google DeepMind · AlphaTensor</a>
+</div>
+</div></details>
+
+<details id="student-question-6"><summary><span class="student-question-title">Cum va schimba AI-ul lumea în 10 ani?</span></summary><div class="student-question-answer">
+<p class="question-location">Discuție bonus · răspuns adăugat aici</p>
+<section class="ai-speed-story" aria-labelledby="aiSpeedTitle">
+<h4 id="aiSpeedTitle">De la telegramă la AI care vorbește cu tine</h4>
+<p>Bunicii și străbunicii au văzut telefonul schimbându-se de-a lungul vieții. Voi vedeți acum instrumente AI care pot combina text, imagini și voce. Curba pune aceste borne în aceeași poveste vizuală.</p>
+<figure class="technology-evolution-chart"><figcaption>O curbă ilustrativă a schimbării tehnologice</figcaption>
+<p class="technology-mobile-hint">↔ Glisează graficul pentru a vedea toate bornele.</p><svg viewBox="0 0 1200 660" role="img" aria-labelledby="technologyChartTitle technologyChartDesc"><title id="technologyChartTitle">Borne tehnologice de la telegraful din 1844 la AI generativ</title><desc id="technologyChartDesc">O curbă schematică urcă lent de la telegraf la telefon, apoi mai abrupt spre touchscreen și AI generativ. Anii sunt poziționați proporțional pe axa timpului. Înălțimea curbei este ilustrativă, nu un scor măsurat al progresului.</desc>
+<defs><linearGradient id="techCurveColor"><stop offset="0" stop-color="#65e2f1"/><stop offset=".85" stop-color="#ffe269"/><stop offset="1" stop-color="#ff6aaa"/></linearGradient><linearGradient id="techAreaColor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6aaa" stop-opacity=".3"/><stop offset="1" stop-color="#65e2f1" stop-opacity=".02"/></linearGradient></defs>
+<path class="technology-area" d="M80 520 C160 519 220 514 261.33 505 C450 495 680 475 811 450 C860 434 910 420 930 400 C960 378 990 365 1003.67 340 C1030 280 1070 235 1088.67 180 C1093 140 1097 95 1100 60 L1100 550 H80 Z"/><path class="technology-axis-line" d="M80 40V550H1130"/><path class="technology-curve" d="M80 520 C160 519 220 514 261.33 505 C450 495 680 475 811 450 C860 434 910 420 930 400 C960 378 990 365 1003.67 340 C1030 280 1070 235 1088.67 180 C1093 140 1097 95 1100 60"/>
+<path class="technology-tick" d="M80.00 550v10"/><text class="technology-axis" x="80.00" y="590" text-anchor="middle">1844</text>
+<path class="technology-tick" d="M397.33 550v10"/><text class="technology-axis" x="397.33" y="590" text-anchor="middle">1900</text>
+<path class="technology-tick" d="M680.67 550v10"/><text class="technology-axis" x="680.67" y="590" text-anchor="middle">1950</text>
+<path class="technology-tick" d="M964.00 550v10"/><text class="technology-axis" x="964.00" y="590" text-anchor="middle">2000</text>
+<path class="technology-tick" d="M1100.00 550v10"/><text class="technology-axis" x="1100.00" y="590" text-anchor="middle">2024</text>
+<text class="technology-axis" x="590" y="635" text-anchor="middle">Timp · anii sunt la scară</text>
+<path class="technology-leader" d="M80 520L105 477"/><circle class="technology-node" cx="80" cy="520" r="7"/><text class="technology-milestone" x="105" y="465" text-anchor="start">1844 · Telegramă 📜</text>
+<path class="technology-leader" d="M261.33 505L270 422"/><circle class="technology-node" cx="261.33" cy="505" r="7"/><text class="technology-milestone" x="270" y="410" text-anchor="middle">1876 · Telefon ☎️</text>
+<path class="technology-leader" d="M811 450L650 482"/><circle class="technology-node" cx="811" cy="450" r="7"/><text class="technology-milestone" x="650" y="470" text-anchor="end">1973 · Mobil portabil 📞</text>
+<path class="technology-leader" d="M930 400L810 397"/><circle class="technology-node" cx="930" cy="400" r="7"/><text class="technology-milestone" x="810" y="385" text-anchor="end">1994 · IBM Simon 📟</text>
+<path class="technology-leader" d="M1003.67 340L810 312"/><circle class="technology-node" cx="1003.67" cy="340" r="7"/><text class="technology-milestone" x="810" y="300" text-anchor="end">2007 · iPhone multitouch 📱</text>
+<path class="technology-leader" d="M1088.67 180L985 200"/><circle class="technology-node" cx="1088.67" cy="180" r="7"/><text class="technology-milestone" x="985" y="188" text-anchor="end">2022 · ChatGPT 💬</text>
+<path class="technology-leader" d="M1100 60L1000 77"/><circle class="technology-node" cx="1100" cy="60" r="7"/><text class="technology-milestone" x="1000" y="65" text-anchor="end">2024 · Text + imagini + voce ✨</text>
+<text class="technology-spike" x="735" y="125">AI GENERATIV</text>
+</svg><p class="technology-chart-note">SCHEMĂ, NU MĂSURĂTOARE: bornele și anii sunt reali; înălțimea și forma curbei sunt desenate pentru explicație. Nu există aici un scor al „inteligenței” sau al vitezei întregii tehnologii.</p></figure>
+
+<p class="technology-context">AI nu a apărut abia în 2022: domeniul are o istorie de decenii, cu o bornă importantă la Dartmouth în 1956, când un grup de cercetători s-a organizat pentru a studia cum ar putea un calculator să folosească limbajul, să învețe și să rezolve probleme care până atunci păreau rezervate oamenilor. În propunerea lor au folosit denumirea de „artificial intelligence”.</p>
+
+<div class="question-sources">
+<a href="https://www.loc.gov/item/today-in-history/may-24/" target="_blank" rel="noopener">Library of Congress · telegraf, 1844</a>
+<a href="https://www.loc.gov/item/today-in-history/march-10/" target="_blank" rel="noopener">Library of Congress · telefon, 1876</a>
+<a href="https://www.motorolasolutions.com/content/dam/msi/docs/en-xw/static_files/history-motorola-demonstrates-portable-telephone-605kb-3.pdf" target="_blank" rel="noopener">Motorola · mobil, 1973</a>
+<a href="https://blog.sciencemuseum.org.uk/simon-says-be-smart/" target="_blank" rel="noopener">Science Museum · IBM Simon</a>
+<a href="https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/" target="_blank" rel="noopener">Apple · iPhone, 2007</a>
+<a href="https://openai.com/index/chatgpt/" target="_blank" rel="noopener">OpenAI · ChatGPT, 2022</a>
+<a href="https://openai.com/index/hello-gpt-4o/" target="_blank" rel="noopener">OpenAI · GPT-4o, 2024</a>
+<a href="https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth" target="_blank" rel="noopener">Dartmouth · începuturile AI</a>
+</div></section>
+<p>Nu știm exact. Putem imagina scenarii: instrumente care ajută profesorii să pregătească exerciții, medicii să analizeze informații sau oamenii să traducă și să creeze. Acestea sunt posibilități, nu promisiuni.</p>
+<p>Contează și alegerile oamenilor: ce construim, cine are acces, cum protejăm datele și cum verificăm greșelile. Provocare pentru voi: ce problemă din școală ați vrea să ajute AI să rezolve și ce regulă i-ați pune?</p>
+</div></details>
+
+<details id="student-question-7"><summary><span class="student-question-title">Ce lucru ai încerca din viața reală pentru o zi?</span></summary><div class="student-question-answer">
+<p class="question-location">Discuție bonus · răspuns adăugat aici</p>
+<p>Dacă îl întrebi pe personajul nostru, putem inventa împreună o poveste: «Pentru o zi, aș fi coechipier la fotbal!» Este un răspuns de personaj, nu relatarea unei dorințe sau a unei experiențe trăite.</p>
+<p>AI poate descrie gustul înghețatei sau bucuria unui gol fără ca acele cuvinte să dovedească faptul că simte ceva. Voi ce aventură i-ați scrie?</p>
+</div></details>
+</div>
+<button class="primary" id="studentQuestionsClose">AM ÎNȚELES! ÎNAPOI LA MISIUNE →</button>
+</dialog>
+<dialog id="characterQuestionModal" class="word-error-modal ai-definition-modal" aria-labelledby="characterQuestionTitle">
+<h3 id="characterQuestionTitle">🤖 Ce este AI?</h3>
+<p class="ai-definition-lead">Inteligența artificială (AI) este <strong>un program antrenat să observe ce au în comun mai multe exemple și să facă apoi estimări pe baza acelor exemple</strong>, ca un elev care studiază exemple de probleme rezolvate pentru a rezolva apoi singur alte probleme.</p>
+<div class="ai-analogy-cards">
+<article><h4>🔎 Ca un detectiv al asemănărilor</h4><p>AI nu este un creier real sau o persoană. Poate învăța din mii de fotografii cu pisici ce trăsături apar des împreună. Apoi încearcă să recunoască o pisică într-o imagine nouă.</p></article>
+<article><h4>⚽ Ca antrenamentul la un sport</h4><p>Tu repeți pasele și primești sfaturi ca să joci mai bine. În timpul antrenării, un program AI folosește date și feedback pentru a-și ajusta calculele. Nu orice conversație nouă îl reantrenează.</p></article>
+<article><h4>👩‍🍳 Ca o rețetă digitală</h4><p>Informația pe care o dai este ingredientul. Calculele modelului sunt instrucțiunile. Răspunsul este preparatul final. Este o analogie: un model învățat poate produce și răspunsuri greșite.</p></article>
+</div>
+<p class="ai-definition-note">Acesta este un mod simplu de a explica AI care învață din date. Există și alte tipuri de sisteme AI.</p>
+<button class="primary" id="characterQuestionClose">AM ÎNȚELES! ✓</button></dialog>
   <dialog id="learningToolkitModal" class="word-error-modal learning-toolkit-modal" aria-labelledby="learningToolkitTitle">
     <h3 id="learningToolkitTitle">🧠 AI, antrenorul tău de învățare</h3>
     <p>Alege o superputere și vezi ce ai putea cere unui AI. Tu faci exercițiul; AI te poate ghida.</p>
