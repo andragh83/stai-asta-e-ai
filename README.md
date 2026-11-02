@@ -53,11 +53,11 @@ Importă repository-ul în Vercel. Fișierul `vercel.json` configurează build-u
 ## Ediția pentru proiecție
 
 - Pixel, Hamlet și Nova sunt personaje originale, desenate în CSS.
-- Tranziții comic-book, bară de progres și cronometru cu pauză.
+- Tranziții comic-book și bară de progres.
 - Schimbarea contextului în scena 4 arată de ce continuarea depinde de textul anterior; textele sunt pregătite, fără inferență AI.
 - Provocare finală cu insignă de detectiv, plus quiz cu feedback.
 - Scenele inactive sunt `inert`; navigarea mută focusul pe titlu. Animațiile se opresc pentru `prefers-reduced-motion`.
 - `N` afișează notițele **pe ecranul proiectat**. Nu este o fereastră privată de prezentator.
-- „Reia misiunea” resetează cronometrul, antrenarea, quiz-ul și selecțiile. Reîncărcarea paginii resetează întreaga demonstrație.
+- „Reia misiunea” resetează antrenarea, quiz-ul și selecțiile. Reîncărcarea paginii resetează întreaga demonstrație.
 
 Ritmul recomandat rămâne 45 + 60 + 105 + 120 + 105 + 105 + 60 = 600 secunde. Tranzițiile sunt manuale, pentru a lăsa timp votului clasei.
