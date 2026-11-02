@@ -322,13 +322,13 @@ dialog#characterQuestionModal.ai-definition-modal{width:min(1050px,calc(100vw - 
 .ai-definition-lead{line-height:1.6}.ai-definition-lead strong{color:var(--cyan)}
 .ai-analogy-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:24px 0}
 .ai-analogy-cards article{padding:20px;border:1px solid #596187;border-radius:16px;background:#171c38}
-.ai-analogy-cards h4{color:var(--yellow);font-size:1.1rem;line-height:1.4;margin:0 0 14px}
+.ai-analogy-cards h3{color:var(--yellow);font-size:1.1rem;line-height:1.4;margin:0 0 14px}
 .ai-analogy-cards p{font-size:1rem;line-height:1.6;margin:0}
 .ai-definition-note{color:var(--muted);font-size:.9rem;line-height:1.5}
 .digital-recipe{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .digital-recipe span{padding:10px 12px;border-radius:10px;background:#10182e;border:1px solid #5d6487;font-size:.9rem;line-height:1.4;color:var(--yellow)}
 @media(max-width:650px){dialog#characterQuestionModal.ai-definition-modal{width:calc(100vw - 24px);max-width:calc(100vw - 24px)}.ai-analogy-cards{grid-template-columns:1fr}.digital-recipe{flex-direction:column}}
-@media(min-width:2400px) and (min-height:1200px){dialog#characterQuestionModal.ai-definition-modal{width:80vw;max-width:80vw}.ai-analogy-cards h4{font-size:1.4rem}.ai-analogy-cards p{font-size:1.2rem}.digital-recipe span{font-size:1rem}}
+@media(min-width:2400px) and (min-height:1200px){dialog#characterQuestionModal.ai-definition-modal{width:80vw;max-width:80vw}.ai-analogy-cards h3{font-size:1.4rem}.ai-analogy-cards p{font-size:1.2rem}.digital-recipe span{font-size:1rem}}
 
 /* The image explanation has its own headline; omit the repeated quiz claim. */
 #quizResultModal.has-media-demo #quizResultQuestion{display:none}
@@ -338,3 +338,32 @@ dialog#characterQuestionModal.ai-definition-modal{width:min(1050px,calc(100vw - 
 .dartmouth-story article>strong{color:var(--cyan)}
 .dartmouth-story article>p{margin-bottom:0}
 .dartmouth-analogy{color:var(--yellow)}
+
+.label-choices .label-answer.recorded{border-color:var(--cyan);background:#164454;color:#c5f8ff}
+.prediction-reveal.training-mistake{background:#ffd4e6;border-color:#ff80ba}
+.training-outcome[hidden]{display:none}
+.training-outcome{padding:18px;border:1px solid var(--cyan);border-radius:14px;background:#132e3e;line-height:1.5}
+.training-outcome p{margin:0 0 14px;line-height:1.5}
+#trainingVoteExplanation{color:var(--cyan);font-weight:850}
+.training-outcome button{width:100%;line-height:1.4}
+.example-chip.mislabeled{border-color:var(--pink);box-shadow:0 0 0 2px #ff6aaa55}
+.example-chip.mislabeled small{color:#ff9acb}
+
+#testPrediction[hidden]{display:none}
+.slide-training .test-card.test-complete{padding:12px;gap:8px}
+.slide-training .test-card.test-complete .test-copy{display:none}
+.slide-training .test-card.test-complete .test-icon img{height:100px}
+@media(min-width:2400px) and (min-height:1200px){.slide-training .test-card.test-complete .test-icon img{height:160px}}
+
+.examples-card.has-training-result>.bottom-callout{display:none}
+
+/* LEVEL 01 presents the former definition modal as a full scene. */
+.slide-definition .ai-definition-lead{font-size:clamp(1.2rem,1.8vw,1.8rem);line-height:1.5;margin:12px 0 20px;max-width:1500px;flex-shrink:0}
+.slide-definition .ai-definition-lead strong{color:var(--cyan)}
+.slide-definition .ai-analogy-cards{flex:1 0 auto;align-items:stretch;margin:12px 0 20px}
+.slide-definition .ai-analogy-cards article{display:flex;flex-direction:column;justify-content:center;gap:16px;padding:clamp(20px,2vw,40px)}
+.slide-definition .ai-analogy-cards h3{font-size:clamp(1.2rem,1.5vw,1.8rem);margin:0;line-height:1.4}
+.slide-definition .ai-analogy-cards p{font-size:clamp(1.05rem,1.35vw,1.5rem);line-height:1.55}
+.slide-definition .ai-definition-note{margin:0;flex-shrink:0}
+@media(max-width:1000px){.slide-definition .ai-analogy-cards{grid-template-columns:1fr}.slide-definition .ai-definition-lead{font-size:1.2rem}.slide-definition .ai-analogy-cards article{padding:22px}.slide-definition .ai-analogy-cards p{font-size:1.05rem}}
+@media(min-width:2400px) and (min-height:1200px){.slide-definition .ai-definition-lead{max-width:100%;font-size:1.5rem}.slide-definition .ai-analogy-cards h3{font-size:1.5rem}.slide-definition .ai-analogy-cards p{font-size:1.25rem}.slide-definition .ai-definition-note{font-size:1rem}}

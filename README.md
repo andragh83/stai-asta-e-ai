@@ -4,10 +4,10 @@ Prezentare web interactivă de ~10 minute, în limba română, pentru elevi de 1
 
 ## Pornește prezentarea
 
-Deschide `index.html` într-un browser modern. Pentru dezvoltare în Codex/VS Code, poți porni și un server static:
+Pornește serverul local, care servește și linkurile directe către niveluri:
 
 ```bash
-python3 -m http.server 8000
+npm run dev
 ```
 
 Apoi accesează `http://localhost:8000`.
@@ -22,7 +22,7 @@ Apoi accesează `http://localhost:8000`.
 
 ## Structura (10 minute)
 
-1. Hook — 45 sec
+1. Ce este AI? Definiție și trei analogii — 45 sec
 2. Unde întâlnim AI — 60 sec
 3. Training cu exemple câine/pisică — 105 sec
 4. Joc de continuare a propoziției — 120 sec
@@ -32,7 +32,7 @@ Apoi accesează `http://localhost:8000`.
 
 ## Important despre simulare
 
-Secțiunea „Cum învață AI?” este o **simulare didactică**, nu un model real de învățare automată. Cele cinci exemple, etichetele și predicția afișată sunt fixe. Scopul este să reprezinte vizual etapele „exemple etichetate → detectarea tiparelor → predicție pe un caz nou”.
+Secțiunea „Cum învață AI?” este o **simulare didactică**, nu un model real de învățare automată. Cele cinci imagini sunt fixe, dar orice etichetă aleasă de copii este acceptată și salvată. Testul cu un câine folosește eticheta majoritară dintre cele trei imagini de câine: cu cel puțin doi câini etichetați „pisică”, răspunde „PISICĂ!”. Altfel, răspunde „CÂINE!”. După test apar voturile și sunt evidențiate etichetele greșite; reluarea permite corectarea lor și compararea rezultatelor. Aceasta este o regulă didactică bazată pe clase cunoscute, nu recunoaștere vizuală sau antrenare reală.
 
 ## Build și verificare
 
@@ -44,7 +44,7 @@ npm run build
 npm run dev
 ```
 
-Build-ul copiază exclusiv fișierele publice în `dist/`. Deschide http://localhost:8000. Pentru verificarea exactă a build-ului: `python3 -m http.server 8000 --directory dist`.
+Build-ul copiază exclusiv fișierele publice în `dist/`. Deschide http://localhost:8000. Pentru verificarea exactă a build-ului: `npm run dev --directory dist`.
 
 ## Publicare: Vercel
 
@@ -70,6 +70,10 @@ Pasul 6 include o trusă interactivă cu structurarea lecției, analogii și exp
 
 ### Întrebările copiilor
 
-La final, butonul „Întrebările voastre · 11 răspunsuri” deschide un bonus cu toate cele 11 întrebări primite, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. Introducerea definește explicit AI printr-un puzzle, antrenamentul la sport și o rețetă digitală, accesibile din „Ce este AI?”; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
+La final, butonul „Întrebările voastre · 11 răspunsuri” deschide un bonus cu toate cele 11 întrebări primite, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. LEVEL 01 prezintă direct definiția AI și analogiile cu exemplele, sportul și rețeta digitală; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
 
 Întrebarea despre următorii 10 ani include un singur grafic schematic, de la telegraf (1844) la AI generativ (2022–2024). Axa anilor este proporțională; înălțimea curbei nu reprezintă un indicator măsurat de progres sau inteligență. Sursele istorice sunt legate în răspuns. Nu este o predicție și nu echivalează progresul telecomunicațiilor cu două lansări de produse AI.
+
+### Pagina de pornire și nivelurile
+
+`/` este homepage-ul, cu activarea AI și „Start misiune”. Nu este inclus în numărătoarea nivelurilor. „Start misiune” deschide `/slide-1`, unde definiția și cele trei analogii sunt afișate direct în LEVEL 01, fără modal. Urmează `/slide-2` până la `/slide-7`. Săgețile, sigla, istoricul browserului și legăturile din întrebări păstrează navigarea coerentă. Linkurile directe către niveluri funcționează și la refresh, prin regulile Vercel și serverul local (`npm run dev`, opțional `-- --port 8001`). „Reia misiunea” revine la `/` și reface activarea. Notițele homepage-ului sunt separate de cele pentru LEVEL 01.

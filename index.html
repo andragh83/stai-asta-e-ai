@@ -19,7 +19,7 @@
   </section>
   <div class="app-shell" inert>
     <header class="topbar">
-      <a class="brand" href="#slide-1" aria-label="Acasă"><span class="brand-mark">✳</span> STAI... ASTA E AI?!</a>
+      <a class="brand" href="/" aria-label="Acasă"><span class="brand-mark">✳</span> STAI... ASTA E AI?!</a>
       <div class="top-actions">
         <button class="icon-btn notes-toggle" id="notesToggle" title="Arată notițele prezentatorului (N)" aria-label="Arată notițele prezentatorului">🎙️ <span>Notițe</span></button>
         <button class="icon-btn language-toggle" id="languageToggle" aria-label="Switch to English" aria-pressed="false"><span data-lang="ro" class="current">RO</span><span aria-hidden="true"> / </span><span data-lang="en">EN</span></button>
@@ -27,14 +27,14 @@
       </div>
     </header>
     <div class="mission-track" aria-hidden="true"><div id="missionFill"></div></div><main class="stage" id="stage" >
-      <section class="slide active slide-intro" id="slide-1" aria-labelledby="slide1title" data-duration="45">
+      <section class="slide active slide-intro" id="home" aria-labelledby="homeTitle">
         <div class="halftone"></div>
         <div class="intro-copy">
-          <div class="eyebrow"><span class="live-dot"></span> MISIUNE SECRETĂ · LEVEL 01</div>
-          <h1 id="slide1title">STAI...<br/><span>ASTA E AI?!</span><span class="explosion">🤯</span></h1>
+          <div class="eyebrow"><span class="live-dot"></span> MISIUNE SECRETĂ</div>
+          <h1 id="homeTitle">STAI...<br/><span>ASTA E AI?!</span><span class="explosion">🤯</span></h1>
           <p class="big-sub">AI nu e magie. Dar uneori <em>pare!</em></p>
           <p class="small-sub">10 minute · 7 niveluri · 1 întrebare uriașă</p>
-          <p class="action-instruction" data-action-icon="🚀">Apasă „Start misiune” și hai să descoperim AI!</p><div class="intro-buttons"><button class="primary" data-next>START MISIUNE <span>→</span></button><button class="secondary character-question" id="characterQuestionOpen" aria-haspopup="dialog" aria-controls="characterQuestionModal">🤖 Ce este AI?</button></div>
+          <p class="action-instruction" data-action-icon="🚀">Apasă „Start misiune” și hai să descoperim AI!</p><div class="intro-buttons"><button class="primary" data-next>START MISIUNE <span>→</span></button></div>
         </div>
         <div class="intro-art" aria-hidden="true">
           <div class="ai-hud" role="img" aria-label="Interfață AI holografică cu inele luminoase">
@@ -47,7 +47,22 @@
         </div>
       </section>
 
-      <section class="slide slide-everywhere" id="slide-2" aria-labelledby="slide2title" data-duration="60">
+      <section class="slide slide-definition" id="slide-1" data-level="1" aria-labelledby="slide1title" data-duration="45">
+        <div class="eyebrow">LEVEL 01 · CE ESTE AI?</div>
+        <h2 id="slide1title">CE ESTE <span class="accent-cyan">AI</span>?</h2>
+        <p class="action-instruction" data-action-icon="👀">Privește cele trei analogii și spune care te ajută să înțelegi AI.</p>
+
+<p class="ai-definition-lead">Inteligența artificială (AI) este <strong>un program antrenat să observe ce au în comun mai multe exemple și să facă apoi estimări pe baza acelor exemple</strong>, ca un elev care studiază exemple de probleme rezolvate pentru a rezolva apoi singur alte probleme.</p>
+<div class="ai-analogy-cards">
+<article><h3>🔎 Ca un detectiv al asemănărilor</h3><p>AI nu este un creier real sau o persoană. Poate învăța din mii de fotografii cu pisici ce trăsături apar des împreună. Apoi încearcă să recunoască o pisică într-o imagine nouă.</p></article>
+<article><h3>⚽ Ca antrenamentul la un sport</h3><p>Tu repeți pasele și primești sfaturi ca să joci mai bine. În timpul antrenării, un program AI folosește date și feedback pentru a-și ajusta calculele. Nu orice conversație nouă îl reantrenează.</p></article>
+<article><h3>👩‍🍳 Ca o rețetă digitală</h3><p>Informația pe care o dai este ingredientul. Calculele modelului sunt instrucțiunile. Răspunsul este preparatul final. Este o analogie: un model învățat poate produce și răspunsuri greșite.</p></article>
+</div>
+<p class="ai-definition-note">Acesta este un mod simplu de a explica AI care învață din date. Există și alte tipuri de sisteme AI.</p>
+
+      </section>
+
+      <section class="slide slide-everywhere" id="slide-2" data-level="2" aria-labelledby="slide2title" data-duration="60">
         <div class="eyebrow">LEVEL 02 · AI ÎN VIAȚA REALĂ</div>
         <h2 id="slide2title">E DEJA <span class="accent-yellow">PESTE TOT.</span> 👀</h2>
         <p class="lead action-instruction" data-action-icon="👀">Atinge un card ca să descoperi ce face AI în culise.</p>
@@ -60,10 +75,10 @@
         <div class="reveal-box" id="useReveal" aria-live="polite" hidden></div>
       </section>
 
-      <section class="slide slide-training" id="slide-3" aria-labelledby="slide3title" data-duration="105">
+      <section class="slide slide-training" id="slide-3" data-level="3" aria-labelledby="slide3title" data-duration="105">
         <div class="eyebrow">LEVEL 03 · TRAINING ARC 🐾</div>
         <h2 id="slide3title">CUM <span class="accent-pink">ÎNVAȚĂ</span> AI?</h2>
-        <p class="lead action-instruction" data-action-icon="🐾"><b>Tu ești antrenorul AI-ului!</b> Spune-i ce animal vede. După 5 exemple, îl testăm cu unul nou.</p>
+        <p class="lead action-instruction" data-action-icon="🐾"><b>Tu ești antrenorul AI-ului!</b> Alege etichetele, chiar și intenționat greșit. După 5 exemple, vedem ce a învățat AI.</p>
         <div class="train-layout">
           <div class="training-card">
             <div class="training-top"><span id="trainStep">1 · ANTRENEAZĂ AI-UL</span><span id="xpText">0 / 5 exemple</span></div>
@@ -81,14 +96,15 @@
               <div class="test-copy"><strong>Ce animal este?</strong><p class="test-invitation">Să vedem dacă AI a învățat.</p><p class="action-instruction" data-action-icon="🗳️" id="testPrediction" aria-live="polite">Mai întâi, etichetați cele 5 animale din cardul de antrenare.</p></div>
             </div>
             <div class="train-answer-action" id="trainAnswerAction" hidden><button class="primary train-button" id="trainBtn" hidden>VEZI RĂSPUNSUL LUI AI →</button></div>
-            <div class="prediction-reveal" id="predictionReveal" hidden tabindex="-1" role="status"><span class="reveal-kicker">✦ AI CREDE CĂ ESTE ✦</span><strong>CÂINE!</strong><span class="reveal-paw" aria-hidden="true">🐾</span><p>Animal nou. Seamănă cu exemplele văzute.</p></div>
-            <p class="prediction-disclaimer" id="predictionDisclaimer" hidden>Simulare: răspunsul este pregătit. Un model AI real poate greși.</p>
-            <details class="meme-credits"><summary>Sursele fotografiilor</summary><p>Meme-uri fără text: <a href="https://imgflip.com/memetemplate/Doge" target="_blank" rel="noopener">Doge</a>, <a href="https://imgflip.com/memetemplate/143985147/Polite-Cat" target="_blank" rel="noopener">Polite Cat</a>, <a href="https://imgflip.com/memetemplate/228704337/Walter-The-Dog" target="_blank" rel="noopener">Walter</a>, <a href="https://imgflip.com/memetemplate/Grumpy-Cat" target="_blank" rel="noopener">Grumpy Cat</a>, <a href="https://imgflip.com/memetemplate/131754603/smiling-dog" target="_blank" rel="noopener">Smiling Dog</a> (Imgflip). Test: <a href="https://commons.wikimedia.org/wiki/File:Shiba_Inu_in_snow.jpg" target="_blank" rel="noopener">Shiba Inu in snow — likeaduck</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; fără modificări.</p></details><div class="bottom-callout">💡 <b>Ideea de reținut:</b> Ca la antrenamentul unui sport, AI învață din exemple și feedback. Caută ce au imaginile în comun, apoi încearcă să recunoască un animal nou. Poate greși!</div>
+            <div class="prediction-reveal" id="predictionReveal" hidden tabindex="-1" role="status"><span class="reveal-kicker">✦ AI CREDE CĂ ESTE ✦</span><strong id="trainingPredictionLabel">CÂINE!</strong><span class="reveal-paw" aria-hidden="true">🐾</span><p id="trainingPredictionReality">În realitate, imaginea este un câine.</p></div>
+            <div id="trainingOutcome" class="training-outcome" hidden aria-live="polite"><p id="trainingVoteExplanation"></p><p id="trainingOutcomeExplanation"></p><button class="secondary" id="retryTraining">↺ REIA CU ALTE ETICHETE</button></div>
+            <p class="prediction-disclaimer" id="predictionDisclaimer" hidden>Simulare: alegem eticheta dată majorității celor 3 câini din antrenament. Un AI real învață relații matematice, nu doar numără etichete. Calitatea exemplelor contează!</p>
+            <details class="meme-credits"><summary>Sursele fotografiilor</summary><p>Meme-uri fără text: <a href="https://imgflip.com/memetemplate/Doge" target="_blank" rel="noopener">Doge</a>, <a href="https://imgflip.com/memetemplate/143985147/Polite-Cat" target="_blank" rel="noopener">Polite Cat</a>, <a href="https://imgflip.com/memetemplate/228704337/Walter-The-Dog" target="_blank" rel="noopener">Walter</a>, <a href="https://imgflip.com/memetemplate/Grumpy-Cat" target="_blank" rel="noopener">Grumpy Cat</a>, <a href="https://imgflip.com/memetemplate/131754603/smiling-dog" target="_blank" rel="noopener">Smiling Dog</a> (Imgflip). Test: <a href="https://commons.wikimedia.org/wiki/File:Shiba_Inu_in_snow.jpg" target="_blank" rel="noopener">Shiba Inu in snow — likeaduck</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; fără modificări.</p></details><div class="bottom-callout">💡 <b>Ideea de reținut:</b> AI învață din exemplele și etichetele primite. Etichetele greșite pot duce la răspunsuri greșite. Reia exercițiul cu alte etichete și compară!</div>
           </div>
         </div>
       </section>
 
-      <section class="slide slide-words" id="slide-4" aria-labelledby="slide4title" data-duration="120">
+      <section class="slide slide-words" id="slide-4" data-level="4" aria-labelledby="slide4title" data-duration="120">
         <div class="eyebrow">LEVEL 04 · GUESS THE NEXT WORD</div>
         <h2 id="slide4title">CUM POATE AI <span class="accent-cyan">SĂ VORBEASCĂ?</span></h2>
         <p class="lead action-instruction" data-action-icon="🧩" id="wordInstruction"><b>1 · Pune-te în locul AI!</b> Citiți propoziția, votați în clasă și alegeți ce s-ar potrivi în spațiul liber.</p>
@@ -113,7 +129,7 @@
 
       </section>
 
-      <section class="slide slide-boss" id="slide-5" aria-labelledby="slide5title" data-duration="105">
+      <section class="slide slide-boss" id="slide-5" data-level="5" aria-labelledby="slide5title" data-duration="105">
         <div class="eyebrow">LEVEL 05 · BOSS FIGHT ⚠️</div>
         <h2 id="slide5title">AI POATE <span class="accent-yellow">SĂ DEA FAIL?</span></h2>
         <p class="action-instruction" data-action-icon="🗳️">Citiți afirmația, votați în clasă, apoi alegeți ADEVĂRAT sau FALS.</p><div class="boss-layout">
@@ -123,7 +139,7 @@
         <div class="boss-rule">Regula de aur: <strong>AI poate greși. Verifică informațiile importante!</strong></div>
       </section>
 
-      <section class="slide slide-power" id="slide-6" aria-labelledby="slide6title" data-duration="105">
+      <section class="slide slide-power" id="slide-6" data-level="6" aria-labelledby="slide6title" data-duration="105">
         <div class="eyebrow">LEVEL 06 · HERO MODE ACTIVATED 🦸</div>
         <h2 id="slide6title">AI: <span class="accent-pink">CHEAT CODE</span> SAU SUPERPUTERE?</h2>
         <p class="lead action-instruction" data-action-icon="🧠">Alege mesajul care te ajută să înveți, apoi explorează și celălalt card.</p>
@@ -138,12 +154,12 @@
 
       </section>
 
-      <section class="slide slide-finale" id="slide-7" aria-labelledby="slide7title" data-duration="60">
+      <section class="slide slide-finale" id="slide-7" data-level="7" aria-labelledby="slide7title" data-duration="60">
         <div class="finale-confetti" aria-hidden="true"><span>✦</span><span>★</span><span>✴</span><span>✧</span><span>★</span><span>✦</span></div>
         <div class="eyebrow">FINAL BOSS DEFEATED · MISSION COMPLETE</div>
         <h2 id="slide7title">SUPERPUTERILE <span class="accent-yellow">DE LUAT ACASĂ.</span></h2>
         <p class="action-instruction" data-action-icon="👉">Apasă săgețile de sub card și descoperă toate cele 8 superputeri. Apoi deblochezi ultima provocare!</p><div class="takeaway-slider" role="region" aria-roledescription="carusel" aria-label="Superputerile de luat acasă"><div class="takeaway-grid" id="takeawayTrack" aria-live="polite">
-          <article><span aria-hidden="true">🐾</span><div><h3>AI învață din exemple</h3><p>Ca un elev care rezolvă puzzle-uri, învață din multe exemple ce au în comun. Apoi încearcă ceva nou. Repetiția și feedbackul ajută la antrenare, dar nu garantează reușita!</p></div></article>
+          <article><span aria-hidden="true">🐾</span><div><h3>AI învață din exemple</h3><p>Ca un elev care rezolvă puzzle-uri, învață din multe exemple ce au lucruri în comun. Apoi încearcă ceva nou. Repetiția și feedbackul ajută la antrenare, dar nu garantează reușita!</p></div></article>
           <article><span aria-hidden="true">💬</span><div><h3>Contextul îl ajută să aleagă</h3><p>„Mi-e foame” ne duce cu gândul la pizza. AI folosește mesajele și textul deja scris pentru a alege ce urmează.</p></div></article>
           <article><span aria-hidden="true">🧩</span><div><h3>Tokenuri = bucăți de text</h3><p>AI citește și scrie în bucăți. Un token nu înseamnă neapărat un cuvânt!</p>
             <div class="token-examples">
@@ -158,7 +174,7 @@
           <article><span aria-hidden="true">🔒</span><div><h3>Datele personale rămân la tine</h3><p>Nu trimite parole, adresa, telefonul, școala sau documente personale. Dacă nu ești sigur, întreabă un adult de încredere.</p></div></article>
         </div>
         <div class="takeaway-controls"><button class="secondary" id="takeawayPrev" aria-label="Ideea anterioară">←</button><span id="takeawayCount" aria-live="polite">1 / 8</span><button class="secondary" id="takeawayNext" aria-label="Ideea următoare">→</button></div></div>
-        <div class="exit-ticket" id="exitTicket" hidden><strong class="action-instruction" data-action-icon="🎯">ULTIMA PROVOCARE: AI spune un fapt surprinzător. Alege ce faci!</strong><div><button class="secondary" data-exit="copy">Îl cred imediat</button><button class="secondary" data-exit="check">Caut o sursă de încredere</button></div><p id="exitFeedback" aria-live="polite">Alege și deblochează insigna de detectiv.</p></div><button class="secondary" id="restartBtn">↺ REIA MISIUNEA</button><button class="secondary student-questions-open" id="studentQuestionsOpen" aria-haspopup="dialog" aria-controls="studentQuestionsModal"><span aria-hidden="true">💬</span><span>ÎNTREBĂRILE VOASTRE · 11 RĂSPUNSURI</span></button>
+        <div class="exit-ticket" id="exitTicket" hidden><strong class="action-instruction" data-action-icon="🎯">ULTIMA PROVOCARE: AI spune un fapt surprinzător. Alege ce faci!</strong><div><button class="secondary" data-exit="copy">Îl cred imediat</button><button class="secondary" data-exit="check">Caut o sursă de încredere</button></div><p id="exitFeedback" aria-live="polite">Alege și deblochează insigna de detectiv.</p></div><button class="secondary" id="restartBtn">↺ REIA MISIUNEA</button><button class="secondary student-questions-open" id="studentQuestionsOpen" aria-haspopup="dialog" aria-controls="studentQuestionsModal"><span aria-hidden="true">💬</span><span>ÎNTREBĂRILE VOASTRE</span></button>
       </section>
     </main>
     <aside id="speakerNotes" class="speaker-notes" aria-label="Notițe prezentator" hidden><div class="notes-top"><strong>🎙️ NOTE PENTRU PREZENTATOR</strong><button id="notesClose" aria-label="Închide notițele">✕</button></div><p id="noteContent"></p></aside>
@@ -303,16 +319,7 @@
 </div>
 <button class="primary" id="studentQuestionsClose">AM ÎNȚELES! ÎNAPOI LA MISIUNE →</button>
 </dialog>
-<dialog id="characterQuestionModal" class="word-error-modal ai-definition-modal" aria-labelledby="characterQuestionTitle">
-<h3 id="characterQuestionTitle">🤖 Ce este AI?</h3>
-<p class="ai-definition-lead">Inteligența artificială (AI) este <strong>un program antrenat să observe ce au în comun mai multe exemple și să facă apoi estimări pe baza acelor exemple</strong>, ca un elev care studiază exemple de probleme rezolvate pentru a rezolva apoi singur alte probleme.</p>
-<div class="ai-analogy-cards">
-<article><h4>🔎 Ca un detectiv al asemănărilor</h4><p>AI nu este un creier real sau o persoană. Poate învăța din mii de fotografii cu pisici ce trăsături apar des împreună. Apoi încearcă să recunoască o pisică într-o imagine nouă.</p></article>
-<article><h4>⚽ Ca antrenamentul la un sport</h4><p>Tu repeți pasele și primești sfaturi ca să joci mai bine. În timpul antrenării, un program AI folosește date și feedback pentru a-și ajusta calculele. Nu orice conversație nouă îl reantrenează.</p></article>
-<article><h4>👩‍🍳 Ca o rețetă digitală</h4><p>Informația pe care o dai este ingredientul. Calculele modelului sunt instrucțiunile. Răspunsul este preparatul final. Este o analogie: un model învățat poate produce și răspunsuri greșite.</p></article>
-</div>
-<p class="ai-definition-note">Acesta este un mod simplu de a explica AI care învață din date. Există și alte tipuri de sisteme AI.</p>
-<button class="primary" id="characterQuestionClose">AM ÎNȚELES! ✓</button></dialog>
+
   <dialog id="learningToolkitModal" class="word-error-modal learning-toolkit-modal" aria-labelledby="learningToolkitTitle">
     <h3 id="learningToolkitTitle">🧠 AI, antrenorul tău de învățare</h3>
     <p>Alege o superputere și vezi ce ai putea cere unui AI. Tu faci exercițiul; AI te poate ghida.</p>

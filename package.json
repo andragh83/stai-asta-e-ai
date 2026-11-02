@@ -2,5 +2,9 @@
   "name": "stai-asta-e-ai",
   "version": "1.0.0",
   "private": true,
-  "scripts": {"dev": "python3 -m http.server 8000", "build": "node build.mjs", "check": "node --check script.js && node --check i18n.js && node --check translations.js && node --check build.mjs"}
+  "scripts": {
+    "dev": "node dev.mjs",
+    "build": "node build.mjs",
+    "check": "node --check script.js && node --check i18n.js && node --check translations.js && node --check build.mjs && node --check dev.mjs"
+  }
 }

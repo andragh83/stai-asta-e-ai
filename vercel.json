@@ -3,5 +3,50 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": null,
-  "headers": [{"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"}, {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"}]}]
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/slide-1",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-2",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-3",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-4",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-5",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-6",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/slide-7",
+      "destination": "/index.html"
+    }
+  ],
+  "trailingSlash": false
 }
