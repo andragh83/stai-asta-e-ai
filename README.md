@@ -70,10 +70,16 @@ Pasul 6 include o trusă interactivă cu structurarea lecției, analogii și exp
 
 ### Întrebările copiilor
 
-La final, butonul „Întrebările voastre · 11 răspunsuri” deschide un bonus cu toate cele 11 întrebări primite, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. LEVEL 01 prezintă direct definiția AI și analogiile cu exemplele, sportul și rețeta digitală; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
+La final, butonul „Întrebările voastre” deschide un bonus cu toate cele 13 întrebări, inclusiv cele două adăugate despre utilizatori și furnizori, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. LEVEL 01 prezintă direct definiția AI și analogiile cu exemplele, sportul și rețeta digitală; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
 
 Întrebarea despre următorii 10 ani include un singur grafic schematic, de la telegraf (1844) la AI generativ (2022–2024). Axa anilor este proporțională; înălțimea curbei nu reprezintă un indicator măsurat de progres sau inteligență. Sursele istorice sunt legate în răspuns. Nu este o predicție și nu echivalează progresul telecomunicațiilor cu două lansări de produse AI.
 
 ### Pagina de pornire și nivelurile
 
 `/` este homepage-ul, cu activarea AI și „Start misiune”. Nu este inclus în numărătoarea nivelurilor. „Start misiune” deschide `/slide-1`, unde definiția și cele trei analogii sunt afișate direct în LEVEL 01, fără modal. Urmează `/slide-2` până la `/slide-7`. Săgețile, sigla, istoricul browserului și legăturile din întrebări păstrează navigarea coerentă. Linkurile directe către niveluri funcționează și la refresh, prin regulile Vercel și serverul local (`npm run dev`, opțional `-- --port 8001`). „Reia misiunea” revine la `/` și reface activarea. Notițele homepage-ului sunt separate de cele pentru LEVEL 01.
+
+### Utilizarea AI și furnizorii
+
+Bonusul are 13 întrebări. Datele despre utilizarea AI generativ sunt Eurostat, UE, 2025 (16–24 versus 16–74 de ani; ultimele 3 luni înainte de sondaj), nu un clasament mondial sau după ore de utilizare. Întrebarea despre cel mai deștept AI prezintă opt furnizori/produse, cu logo-uri locale și detalii la click, fără un câștigător absolut. Descrierile au legături la furnizori; metodologia de comparație este legată la Artificial Analysis. Verificare editorială: 3 noiembrie 2026.
+
+Logo-uri: `@lobehub/icons-static-svg` 1.102.0, [Lobe Icons](https://github.com/lobehub/lobe-icons), MIT; licența este în `assets/ai-logos/LICENSE`. Mărcile aparțin titularilor lor; imaginile identifică produsele și nu indică afiliere.
