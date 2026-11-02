@@ -107,3 +107,120 @@ dialog.word-error-modal{box-sizing:border-box;width:fit-content;height:fit-conte
 
 /* Center the titles beneath the slide 2 illustrations. */
 .slide-everywhere .use-card>strong{display:block;width:100%;text-align:center}
+
+/* Give the stacked training flow room to breathe on mobile. */
+@media(max-width:1000px){
+ .slide-training .examples-card{padding-block:24px}
+ .slide-training .examples-row{margin-block:20px 24px;row-gap:12px}
+ .slide-training .test-card{padding-block:24px;gap:16px;scroll-margin-top:20px}
+ .slide-training .test-copy .test-invitation{margin-top:12px}
+ .slide-training #testPrediction{margin-block:16px 0}
+ .slide-training #trainBtn{margin-block:20px 24px;flex-shrink:0}
+ .slide-training .prediction-reveal{margin-block:0 20px}
+ .slide-training .prediction-disclaimer{margin-block:0 20px}
+ .slide-training .meme-credits{margin-block:16px}
+ .slide-training .training-screen{padding-block:24px;gap:20px}
+ .slide-training .label-choices{margin-block:16px}
+}
+
+/* Separate the training, test and reveal controls on desktop and projection screens. */
+@media(min-width:1001px){
+ .slide-training .examples-row{margin-block:1rem 1.5rem;row-gap:.75rem}
+ .slide-training .test-card{padding-block:1.5rem;gap:1rem}
+ .slide-training .test-copy .test-invitation{margin-top:.75rem}
+ .slide-training #testPrediction{margin-block:1rem 0}
+ .slide-training #trainBtn{margin-block:1.25rem 1.5rem;flex-shrink:0}
+ .slide-training .prediction-reveal{margin-block:0 1.25rem}
+ .slide-training .prediction-disclaimer{margin-block:0 1.25rem}
+ .slide-training .meme-credits{margin-block:1rem}
+ .slide-training .training-screen{padding-block:1.5rem;gap:1.25rem}
+ .slide-training .label-choices{margin-block:1rem}
+}
+
+/* Use a real flex gap so adjacent training blocks cannot touch. */
+.slide-training .examples-card{row-gap:clamp(32px,1.5vw,48px)}
+.slide-training .examples-card>#trainBtn,
+.slide-training .examples-card>.prediction-reveal,
+.slide-training .examples-card>.prediction-disclaimer,
+.slide-training .examples-card>.meme-credits{margin-block:0;flex-shrink:0}
+.slide-training .examples-card>.test-card{flex-shrink:0}
+
+/* Reserve physical space above the answer button, independent of flex margins. */
+.slide-training .train-answer-action{padding-top:24px;padding-bottom:12px;flex-shrink:0;width:100%}
+.slide-training .train-answer-action[hidden]{display:none}
+.slide-training .train-answer-action>#trainBtn{width:100%;margin:0}
+@media(min-width:2400px){.slide-training .train-answer-action{padding-top:40px;padding-bottom:20px}}
+
+.language-toggle{white-space:nowrap;font-size:.85rem;letter-spacing:.03em}
+.language-toggle [data-lang]{opacity:.55}
+.language-toggle .current{opacity:1;color:var(--cyan);font-weight:900}
+html[lang=en] .prompt-card.explored .card-tag:after{content:' · EXPLORED ✓'}
+html[lang=en] .activation-gate:not(.activating) .hud-online:after{content:'STANDBY'}
+@media(max-width:650px){.language-toggle{padding:10px 8px;font-size:.75rem}.topbar .brand{max-width:125px;font-size:.75rem}}
+
+.learning-toolkit-open{margin:16px auto;display:block;border-color:var(--cyan);color:var(--cyan)}
+.learning-toolkit-modal{width:min(900px,calc(100vw - 32px));max-width:900px;text-align:left}
+.learning-toolkit-modal h3{text-align:center}
+.learning-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0}
+.learning-tools button{padding:14px 12px;font-size:1rem}
+.learning-tools button[aria-pressed=true]{border-color:var(--cyan);background:#164455;color:var(--cyan)}
+.learning-tool-panels article[hidden]{display:none}
+.learning-tool-panels article{animation:heroArrival .25s ease both}
+.learning-tool-panels h4{font-size:1.35rem;color:var(--yellow);margin:20px 0 12px}
+.learning-toolkit-modal p{line-height:1.5}
+.learning-toolkit-modal blockquote{margin:20px 0;padding:18px;border-left:5px solid var(--cyan);border-radius:12px;background:#12172f;font-size:1.1rem;line-height:1.5}
+.learning-visual{display:flex;flex-direction:column;align-items:center;gap:14px;background:#292e50;padding:20px;border-radius:14px;margin:20px 0;text-align:center}
+.learning-visual p{margin:0}.plant-map{align-items:stretch;text-align:left}.plant-map span{padding:6px 0}
+.chocolate-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;width:180px}
+.chocolate-grid i{height:34px;background:#81482e;border:2px solid #bb8860;border-radius:4px}
+.chocolate-grid i:nth-child(4n+1){background:var(--yellow);border-color:#fff0a6}
+.study-schedule{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
+.study-schedule span{padding:12px;background:#151a36;border-radius:10px;line-height:1.6}
+.learning-tip{color:var(--cyan)}.learning-caution{border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:.95rem!important}
+@media(max-width:650px){.learning-toolkit-modal{padding:20px}.learning-tools{gap:8px}.learning-tools button{font-size:.9rem}.study-schedule{grid-template-columns:1fr}.learning-toolkit-open{width:100%;line-height:1.5}}
+@media(min-width:2400px) and (min-height:1200px){.learning-toolkit-modal{width:min(1600px,calc(100vw - 100px));max-width:1600px}.learning-toolkit-modal h4{font-size:1.6rem}.learning-tools button,.learning-toolkit-modal blockquote{font-size:1.2rem}.learning-toolkit-open{font-size:1.1rem}.chocolate-grid{width:280px}.chocolate-grid i{height:48px}}
+@media(prefers-reduced-motion:reduce){.learning-tool-panels article{animation:none}}
+
+@media(min-width:1001px){
+ .learning-toolkit-modal{width:min(1200px,calc(100vw - 96px));max-width:1200px}
+}
+@media(min-width:2400px) and (min-height:1200px){
+ .learning-toolkit-modal{width:min(2000px,calc(100vw - 160px));max-width:2000px}
+}
+
+/* Show each part of the plant as a distinct information card. */
+.learning-visual.plant-map{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;background:transparent;padding:0;text-align:center;align-items:stretch}
+.plant-map>span:first-child{grid-column:1/-1;font-size:1.25rem;font-weight:900;color:var(--yellow);padding:8px}
+.plant-map>span:not(:first-child){display:flex;align-items:center;justify-content:center;min-height:110px;padding:20px 16px;border:1px solid #657395;border-radius:16px;background:#292e50;line-height:1.6}
+@media(max-width:650px){.learning-visual.plant-map{grid-template-columns:1fr}.plant-map>span:not(:first-child){min-height:80px}}
+
+@media(min-width:1001px){
+ .learning-toolkit-modal{width:80vw;max-width:80vw}
+ .learning-toolkit-modal .learning-tools{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* Keep scrolling usable without displaying scrollbar tracks in dialogs. */
+dialog{scrollbar-width:none;-ms-overflow-style:none}
+dialog::-webkit-scrollbar{display:none;width:0;height:0}
+@media(min-width:1001px){
+ dialog#learningToolkitModal{width:94vw;max-width:94vw;max-height:calc(100dvh - 32px);padding:24px 32px}
+ #learningToolkitModal>h3{margin:0 0 12px}
+ #learningToolkitModal>p{margin:12px 0}
+ #learningToolkitModal .learning-tools{margin:16px 0;gap:16px}
+ #learningToolkitModal .learning-tool-panels article:not([hidden]){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;row-gap:12px;align-items:start}
+ #learningToolkitModal article>h4{grid-column:1/-1;margin:0}
+ #learningToolkitModal article>p:first-of-type{grid-column:1/-1;margin:0}
+ #learningToolkitModal article>.learning-visual{grid-column:1;grid-row:3/span 2;margin:0}
+ #learningToolkitModal article>blockquote{grid-column:2;grid-row:3;margin:0}
+ #learningToolkitModal article>.learning-tip{grid-column:2;grid-row:4;margin:0}
+ #learningToolkitModal .learning-caution{padding-top:12px}
+ #learningToolkitModal .plant-map{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ #learningToolkitModal .plant-map>span:not(:first-child){min-height:100px;padding:14px 10px}
+}
+
+@media(min-width:1001px){
+ #learningToolkitModal .learning-tool-panels article:not([hidden]){display:flex;flex-direction:column;gap:16px;align-items:stretch}
+ #learningToolkitModal article>.learning-visual,
+ #learningToolkitModal article>blockquote,
+ #learningToolkitModal article>.learning-tip{margin:0}
+}

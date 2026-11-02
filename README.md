@@ -61,3 +61,9 @@ Importă repository-ul în Vercel. Fișierul `vercel.json` configurează build-u
 - „Reia misiunea” reîncarcă demonstrația: resetează toate exercițiile, selecțiile, modalele și progresul, apoi afișează ecranul inițial „Activează”, cu animația de pornire disponibilă din nou.
 
 Ritmul recomandat rămâne 45 + 60 + 105 + 120 + 105 + 105 + 60 = 600 secunde. Tranzițiile sunt manuale, pentru a lăsa timp votului clasei.
+
+### Limbi
+
+Butonul RO / EN din dreapta sus, lângă ecran complet, schimbă limba fără a pierde progresul. Alegerea se păstrează local și la reluarea misiunii. Textele engleze sunt în `translations.js`; `i18n.js` localizează textele dinamice și atributele de accesibilitate, păstrând datele exercițiilor. Ilustrațiile traduse sunt în `assets/cards/*-en.svg`.
+
+Pasul 6 include o trusă interactivă cu structurarea lecției, analogii și explicare proprie, exersarea reamintirii cu feedback și recapitulări în zile diferite. Exercițiile sunt pregătite didactic. Surse pentru tehnicile de reamintire și distribuire: [AERO](https://www.edresearch.edu.au/guides-resources/practice-guides/spacing-and-retrieval-practice-guide-full-publication), [Carpenter et al., 2022](https://doi.org/10.1038/s44159-022-00089-1).

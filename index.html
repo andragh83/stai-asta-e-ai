@@ -22,6 +22,7 @@
       <a class="brand" href="#slide-1" aria-label="Acasă"><span class="brand-mark">✳</span> STAI... ASTA E AI?!</a>
       <div class="top-actions">
         <button class="icon-btn notes-toggle" id="notesToggle" title="Arată notițele prezentatorului (N)" aria-label="Arată notițele prezentatorului">🎙️ <span>Notițe</span></button>
+        <button class="icon-btn language-toggle" id="languageToggle" aria-label="Switch to English" aria-pressed="false"><span data-lang="ro" class="current">RO</span><span aria-hidden="true"> / </span><span data-lang="en">EN</span></button>
         <button class="icon-btn" id="fullscreenToggle" title="Ecran complet (F)" aria-label="Ecran complet">⛶</button>
       </div>
     </header>
@@ -69,7 +70,6 @@
             <div class="xp-track"><div id="xpFill" class="xp-fill"></div></div>
             <div class="training-screen"><div class="animal-example" id="trainingAnimal" role="img" aria-label="Câine"><img src="assets/memes/doge.jpg" alt="Doge" /></div><strong id="animalQuestion" class="action-instruction" data-action-icon="👀">Ce animal este? Arată-i AI-ului.</strong><div class="training-status" id="trainingStatus" aria-live="polite">Votați în clasă, apoi apăsați CÂINE sau PISICĂ.</div></div>
             <div class="label-choices" id="labelChoices"><button class="label-answer" data-label="CÂINE">CÂINE</button><button class="label-answer" data-label="PISICĂ">PISICĂ</button></div>
-            <button class="primary train-button" id="trainBtn" hidden>VEZI RĂSPUNSUL LUI AI →</button>
             <button class="secondary train-reset" id="trainReset">↺ Reîncepe</button>
           </div>
           <div class="examples-card">
@@ -78,8 +78,9 @@
             <div class="test-card" id="testCard">
               <small class="test-heading">3 · TESTUL</small>
               <div class="test-icon"><img src="assets/memes/test-dog.jpg" alt="Un animal în zăpadă, pentru test" /></div>
-              <div class="test-copy"><strong>Ce animal este?</strong><p class="test-invitation">Să vedem dacă AI a învățat.</p><p class="action-instruction" data-action-icon="🗳️" id="testPrediction" aria-live="polite">Mai întâi, etichetați cele 5 exemple din stânga.</p></div>
+              <div class="test-copy"><strong>Ce animal este?</strong><p class="test-invitation">Să vedem dacă AI a învățat.</p><p class="action-instruction" data-action-icon="🗳️" id="testPrediction" aria-live="polite">Mai întâi, etichetați cele 5 animale din cardul de antrenare.</p></div>
             </div>
+            <div class="train-answer-action" id="trainAnswerAction" hidden><button class="primary train-button" id="trainBtn" hidden>VEZI RĂSPUNSUL LUI AI →</button></div>
             <div class="prediction-reveal" id="predictionReveal" hidden tabindex="-1" role="status"><span class="reveal-kicker">✦ AI CREDE CĂ ESTE ✦</span><strong>CÂINE!</strong><span class="reveal-paw" aria-hidden="true">🐾</span><p>Animal nou. Seamănă cu exemplele văzute.</p></div>
             <p class="prediction-disclaimer" id="predictionDisclaimer" hidden>Simulare: răspunsul este pregătit. Un model AI real poate greși.</p>
             <details class="meme-credits"><summary>Sursele fotografiilor</summary><p>Meme-uri fără text: <a href="https://imgflip.com/memetemplate/Doge" target="_blank" rel="noopener">Doge</a>, <a href="https://imgflip.com/memetemplate/143985147/Polite-Cat" target="_blank" rel="noopener">Polite Cat</a>, <a href="https://imgflip.com/memetemplate/228704337/Walter-The-Dog" target="_blank" rel="noopener">Walter</a>, <a href="https://imgflip.com/memetemplate/Grumpy-Cat" target="_blank" rel="noopener">Grumpy Cat</a>, <a href="https://imgflip.com/memetemplate/131754603/smiling-dog" target="_blank" rel="noopener">Smiling Dog</a> (Imgflip). Test: <a href="https://commons.wikimedia.org/wiki/File:Shiba_Inu_in_snow.jpg" target="_blank" rel="noopener">Shiba Inu in snow — likeaduck</a>, <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a>; fără modificări.</p></details><div class="bottom-callout">💡 <b>Ideea de reținut:</b> AI vede exemple și învață ce au în comun. Apoi încearcă să recunoască un animal nou. Poate greși!</div>
@@ -129,6 +130,7 @@
         <p class="prompt-exploration action-instruction" data-action-icon="👆" id="promptExploration" aria-live="polite">Explorează ambele carduri · 0 / 2</p>
         <div id="mentorReveal" class="mentor-reveal" hidden>
           <div class="prompt-feedback" id="promptFeedback">🏆 AI ca antrenor: tu gândești, el te ajută să exersezi.</div>
+          <button class="secondary learning-toolkit-open" id="learningToolkitOpen" aria-haspopup="dialog" aria-controls="learningToolkitModal">🧰 CUM MĂ AJUTĂ AI SĂ ÎNVĂȚ? · 4 IDEI PRACTICE</button>
           <div class="mentor-badge"><span class="anime-hero" aria-hidden="true"><i></i></span><b>NOVA · puterea ta: întrebările bune</b></div>
         </div>
         <button class="secondary vir-button" id="virButton" aria-haspopup="dialog" aria-controls="virModal">⚠️ VIR · Very Important Rule <span>REGULA FOARTE IMPORTANTĂ →</span></button>
@@ -161,6 +163,49 @@
     <aside id="speakerNotes" class="speaker-notes" aria-label="Notițe prezentator" hidden><div class="notes-top"><strong>🎙️ NOTE PENTRU PREZENTATOR</strong><button id="notesClose" aria-label="Închide notițele">✕</button></div><p id="noteContent"></p></aside>
     <footer class="navbar"><button class="nav-btn" id="prevBtn" aria-label="Slide anterior">← <span>ÎNAPOI</span></button><div class="nav-center"><div class="progress-pips" id="pips" aria-label="Progres prezentare"></div><span class="slide-count" id="slideCount">01 / 07</span></div><button class="nav-btn primary" id="nextBtn"><span>URMĂTORUL</span> →</button></footer>
   </div>
+  <dialog id="learningToolkitModal" class="word-error-modal learning-toolkit-modal" aria-labelledby="learningToolkitTitle">
+    <h3 id="learningToolkitTitle">🧠 AI, antrenorul tău de învățare</h3>
+    <p>Alege o superputere și vezi ce ai putea cere unui AI. Tu faci exercițiul; AI te poate ghida.</p>
+    <div class="learning-tools" role="group" aria-label="Alege o metodă de învățare">
+      <button class="secondary" data-learning-tool="organize" aria-pressed="true">🗂️ Organizează informația</button>
+      <button class="secondary" data-learning-tool="connect" aria-pressed="false">🍫 Fă legături</button>
+      <button class="secondary" data-learning-tool="recall" aria-pressed="false">🎯 Testează-te</button>
+      <button class="secondary" data-learning-tool="space" aria-pressed="false">📅 Revino în timp</button>
+    </div>
+    <div class="learning-tool-panels" aria-live="polite">
+      <article data-learning-panel="organize">
+        <h4>🗂️ Dintr-o lecție lungă, o hartă clară</h4>
+        <p>AI poate grupa informația în idei principale, pași sau tabele.</p>
+        <div class="learning-visual plant-map"><span>🌱 Planta</span><span>↙ Rădăcină · absoarbe apă</span><span>↑ Tulpină · susține și transportă</span><span>🍃 Frunze · produc hrană cu ajutorul luminii</span></div>
+        <blockquote>„Din această lecție despre plante, fă un tabel cu partea plantei, rolul ei și un exemplu. Păstrează ideile importante. Apoi cere-mi să-l refac fără să mă uit.”</blockquote>
+        <p class="learning-tip">🔎 Compară schema cu manualul: un rezumat AI poate omite sau greși ceva.</p>
+      </article>
+      <article data-learning-panel="connect" hidden>
+        <h4>🍫 Leagă ideea nouă de ceva cunoscut</h4>
+        <p>O analogie te poate ajuta să înțelegi. Apoi explică tu, cu cuvintele tale, de ce funcționează.</p>
+        <div class="learning-visual"><div class="chocolate-grid" aria-label="12 pătrățele de ciocolată, dintre care 3 evidențiate"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><strong>3 din 12 = 1 din 4 = ¼</strong></div>
+        <blockquote>„Explică-mi de ce 3/12 = 1/4 folosind o ciocolată cu 12 pătrățele. Apoi dă-mi un exemplu cu pizza și cere-mi să explic singur.”</blockquote>
+        <p class="learning-tip">💬 Provocare: dacă mănânci 6 din 12 pătrățele, ce parte din ciocolată ai mâncat? Explică de ce.</p>
+      </article>
+      <article data-learning-panel="recall" hidden>
+        <h4>🎯 Închide caietul. Ce îți amintești?</h4>
+        <p>Să scoți răspunsul din memorie te ajută să înveți. Încearcă întâi singur, apoi verifică și corectează.</p>
+        <blockquote>„Testează-mă la cuvintele în engleză din lecția mea, cu o întrebare pe rând. Așteaptă răspunsul. Dacă greșesc, dă-mi un indiciu, apoi explică și întreabă-mă din nou mai târziu.”</blockquote>
+        <div class="learning-visual"><strong>🗣️ Cum spui „bibliotecă” în engleză?</strong><p>Spune răspunsul înainte să verifici.</p><button class="secondary" id="learningRecallCheck" aria-expanded="false">👀 VERIFICĂ RĂSPUNSUL</button><p id="learningRecallAnswer" hidden><b>Library!</b> „Bookshop” înseamnă librărie. Ai încurcat cuvintele? Mai încearcă după o pauză.</p></div>
+        <p class="learning-tip">🧠 Această tehnică se numește exersarea reamintirii. Recitirea răspunsului nu înlocuiește încercarea ta.</p>
+      </article>
+      <article data-learning-panel="space" hidden>
+        <h4>📅 Puțin azi, puțin și în alte zile</h4>
+        <p>Revenirea la lecție după pauze ajută memoria pe termen lung. AI îți poate propune un plan; tu îți pui reamintirile în calendar.</p>
+        <div class="learning-visual study-schedule"><span>AZI<br/>5 minute · învață</span><span>MÂINE<br/>3 minute · răspunde din memorie</span><span>PESTE 3 ZILE<br/>3 minute · încearcă din nou</span></div>
+        <blockquote>„Am de învățat 10 cuvinte în engleză. Propune-mi 3 sesiuni scurte în zile diferite, cu mini-teste. Revino mai des la cuvintele pe care le greșesc.”</blockquote>
+        <p class="learning-tip">📌 Acesta este un plan orientativ, nu o rețetă fixă. Adaptează pauzele la lecție și la ce îți amintești.</p>
+      </article>
+    </div>
+    <p class="learning-caution">⭐ AI poate face pregătirea și exersarea mai ușoare. Învățarea o faci tu. Nu garantează note mai mari sau învățare instantanee; verifică explicațiile cu manualul ori profesorul.</p>
+    <button class="primary" id="learningToolkitClose">AM ÎNȚELES! EU EXERSEZ ✓</button>
+  </dialog>
+
   <dialog id="contextDiscoveryModal" class="word-error-modal context-discovery-modal" aria-labelledby="contextDiscoveryTitle" aria-describedby="contextDiscoveryExplanation">
     <div class="error-smiley" aria-hidden="true">🧠</div>
     <h3 id="contextDiscoveryTitle">AI FOLOSIT CONTEXTUL!</h3>
@@ -243,5 +288,7 @@
     <button class="primary" id="wordErrorClose">MAI ÎNCERC O DATĂ ↺</button>
   </dialog>
   <script src="script.js"></script>
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
 </body>
 </html>
