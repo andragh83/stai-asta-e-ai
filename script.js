@@ -6,6 +6,19 @@
     if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}
     dialog.scrollTop=0;
   }
+  document.querySelectorAll('dialog').forEach(dialog=>{
+    let startedOutside=false;
+    const isOutside=event=>{
+      const bounds=dialog.getBoundingClientRect();
+      return event.clientX<bounds.left || event.clientX>bounds.right || event.clientY<bounds.top || event.clientY>bounds.bottom;
+    };
+    dialog.addEventListener('pointerdown',event=>{startedOutside=event.target===dialog && isOutside(event);});
+    dialog.addEventListener('click',event=>{
+      if(startedOutside && event.target===dialog && isOutside(event) && dialog.open)dialog.close();
+      startedOutside=false;
+    });
+    dialog.addEventListener('close',()=>{startedOutside=false;});
+  });
   const slides = [...document.querySelectorAll('.slide')];
   const activationGate=document.getElementById('activationGate');
   const activateButton=document.getElementById('activateAI');
@@ -22,6 +35,26 @@
       const title=document.getElementById('slide1title');title.tabIndex=-1;title.focus({preventScroll:true});
     },reduced?0:2200);
   });
+  let fitFrame;
+  function fitActiveScene(){
+    const active=document.querySelector('.slide.active');if(!active)return;
+    slides.forEach(s=>{if(s!==active)s.style.zoom='';});
+    active.style.zoom='';
+    if(window.innerWidth<=1000)return;
+    // Fit the scene's actual content, including newly revealed blocks. Never clip it.
+    for(let pass=0;pass<5;pass++){
+      const extra=active.scrollHeight-active.clientHeight;
+      if(extra<=2)break;
+      const current=Number(active.style.zoom)||1;
+      const next=current*(active.clientHeight/active.scrollHeight)*.99;
+      if(next<.55){active.style.zoom='.55';break;}
+      active.style.zoom=String(next);
+    }
+  }
+  function scheduleSceneFit(){cancelAnimationFrame(fitFrame);fitFrame=requestAnimationFrame(fitActiveScene);}
+  window.addEventListener('resize',scheduleSceneFit);
+  new ResizeObserver(scheduleSceneFit).observe(document.getElementById('stage'));
+  new MutationObserver(scheduleSceneFit).observe(document.getElementById('stage'),{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['hidden']});
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const slideCount = document.getElementById('slideCount');
@@ -37,7 +70,7 @@
     "2 minute · Context și generarea textului\nPasul 1: citește „Mi-e foame! Aș mânca o…”. Clasa votează pizza, rachetă sau pernă. La început, propoziția nu are indicii evidențiate. După alegerea corectă, „Mi-e foame!” devine un buton albastru subliniat. Apasă-l: se deschide modalul care explică noțiunea de context și de ce indiciul duce la pizza. După închidere se deblochează pasul 2. Contextul este tot textul disponibil, nu doar indiciul evidențiat.\nPizza deblochează descoperirea contextului. Celelalte alegeri deschid un modal cu propoziția trăsnită și un smiley; închide-l și reîncercați. Precizează că alegem continuarea obișnuită pentru exercițiu, nu singura propoziție posibilă.\nPasul 2: întregul „Mi-e foame! Aș mânca o pizza” este noul context, albastru și subliniat. Apasă de 5 ori „Adaugă următoarea bucată”; predicțiile apar cu verde. Fiecare bucată intră la rândul ei în context, chiar dacă verdele rămâne pentru a arăta ce s-a adăugat.\nUltima apăsare dezvăluie cele două casete „De reținut” despre context și secretul chatbotului și deschide modalul de succes despre tokenuri: bucăți de text, nu neapărat cuvinte întregi. Folosește analogia pieselor LEGO. Explică și contorul de consum: în multe servicii AI pentru aplicații, tokenurile citite și generate contribuie la cost; tokenul nu este o monedă, iar într-o aplicație gratuită sau cu abonament nu se plătește neapărat separat fiecare mesaj. Demo-ul nu apelează un AI plătit. După închiderea modalului, citește concluziile cu clasa. Abia acum apare butonul „Schimbă contextul”, sub explicații; la începutul exercițiului este ascuns. Aceste casete sunt ascunse până la completarea propoziției și se ascund din nou când schimbi contextul. Închide-l, apoi „Schimbă contextul”: acum alegerea așteptată este rachetă. Repetă dacă timpul permite.\nUn model real calculează continuări din context și tiparele învățate. Bucățile de aici sunt pregătite didactic; nu reprezintă tokenizarea reală a unui model.",
     "1 min 45 sec · Quiz: AI poate greși\nCitește fiecare afirmație și cere vot adevărat/fals înainte de click. Răspunsurile celor 3 întrebări: ADEVĂRAT, FALS, FALS.\nFiecare alegere deschide un modal de succes sau eroare cu răspunsul corect și explicația. Închide-l cu „Am înțeles!” sau Escape, apoi apasă „Următoarea”. Nu se trece automat la întrebarea următoare. După întrebarea 3, „Reia provocarea” reia quiz-ul.\nExplică halucinația folosind cazul Mata v. Avianca (SUA, 2023), inclus în modal: ChatGPT a inventat hotărâri judecătorești, iar avocații le-au depus fără verificare corectă și le-au susținut după avertismente. Doi avocați și firma au fost sancționați cu 5.000 de dolari în total, nu fiecare. Subliniază atât greșeala AI, cât și responsabilitatea oamenilor de a verifica. La întrebarea despre imagini, modalul evidențiază ideea „Imaginile și videoclipurile pot fi generate sau modificate cu AI” și arată imaginea falsă cu Papa Francisc în geacă albă (2023), afișată fără marcaje sau modificări. Explică faptul că identificarea ca imagine AI se bazează pe verificarea originii, nu pe presupuneri despre ochelari, cruce sau mână. Nu este un exemplu creat pentru lecție; verificarea Full Fact este legată sub imagine. Întreabă clasa: „Unde am căuta să aflăm cine a creat imaginea?” Explică: erorile vizuale sunt motive de verificare, nu o dovadă sigură; unele imagini AI nu au erori vizibile, iar fotografiile reale pot avea detalii neobișnuite. Verificăm sursa și alte relatări. Viteza și tonul sigur nu dovedesc adevărul.\nÎntreabă: „Unde am verifica?” Exemple: manual, sursă oficială, adult de încredere.",
     "1 min 45 sec · AI ca antrenor și regula VIR\nCere clasei să aleagă mesajul care ajută la învățare, apoi explorați și celălalt card. Fiecare alegere deschide un modal: succes pentru explicații și exerciții, eroare pentru tema făcută în locul copilului. Închide fiecare modal.\nTrebuie apăsate ambele carduri, în orice ordine. După închiderea celui de-al doilea modal, apar „AI ca antrenor” și Nova: „puterea ta: întrebările bune”. Apăsarea repetată a aceluiași card nu deblochează mesajele.\nÎntreabă: „Ce ai putea cere după explicația cu pizza?” De exemplu: un exercițiu și un indiciu, fără răspunsul direct.\nApasă butonul centrat „VIR · Very Important Rule”, disponibil și înainte de explorarea cardurilor. Citește avertizarea: nu trimite parole, adresa, telefonul, școala sau documente personale. Pentru fracții, AI nu are nevoie să știe unde locuiești. La îndoială, întreabă un adult. Închide modalul.",
-    "1 minut · Recapitulare și insigna de detectiv\nParcurge cu săgețile de sub card cele 8 idei, cu accent pe ce pot folosi copiii: AI învață din exemple; contextul; tokenurile (arată cele două împărțiri ilustrative: cuvinte întregi versus un cuvânt împărțit; bucățile nu sunt neapărat silabe și împărțirea reală depinde de model); costul textului (analogia traficului de internet din abonamentul telefonului: mai mult text înseamnă, de obicei, mai multe tokenuri; plata depinde de serviciu); halucinațiile și verificarea; imaginile/video create ori schimbate cu AI; AI ca antrenor; datele personale. Exemplele de utilizare și NPC-urile nu mai au carduri separate: sunt introducere, nu mesajele principale. Spune câte o propoziție pe idee. Tastele ←/→ schimbă scenele principale, nu cardurile recapitulării.\nUltima provocare apare numai după vizualizarea tuturor celor 8 idei și rămâne deblocată dacă revii la una anterioară.\nCere vot: cred imediat sau caut o sursă? Prima variantă deschide modalul de eroare; închideți și reîncercați. „Caut o sursă de încredere” deschide explicația de succes. După închiderea ei apare separat modalul „Insignă de detectiv deblocată!”.\nButonul „Reia misiunea” din modal resetează exercițiile, explorarea cardurilor și progresul recapitulării, apoi revine la prima scenă. Folosește-l numai dacă vrei să reîncepi. Pentru încheiere, lasă insigna pe ecran."
+    "1 minut · Recapitulare și insigna de detectiv\nParcurge cu săgețile de sub card cele 8 idei, cu accent pe ce pot folosi copiii: AI învață din exemple; contextul; tokenurile (arată cele două împărțiri ilustrative: cuvinte întregi versus un cuvânt împărțit; bucățile nu sunt neapărat silabe și împărțirea reală depinde de model); costul textului (analogia traficului de internet din abonamentul telefonului: mai mult text înseamnă, de obicei, mai multe tokenuri; plata depinde de serviciu); halucinațiile și verificarea; imaginile/video create ori schimbate cu AI; AI ca antrenor; datele personale. Exemplele de utilizare și NPC-urile nu mai au carduri separate: sunt introducere, nu mesajele principale. Spune câte o propoziție pe idee. Tastele ←/→ schimbă scenele principale, nu cardurile recapitulării.\nUltima provocare apare numai după vizualizarea tuturor celor 8 idei și rămâne deblocată dacă revii la una anterioară.\nCere vot: cred imediat sau caut o sursă? Prima variantă deschide modalul de eroare; închideți și reîncercați. „Caut o sursă de încredere” deschide explicația de succes. După închiderea ei apare separat modalul „Insignă de detectiv deblocată!”.\nButonul „Reia misiunea” din modal resetează exercițiile, explorarea cardurilor și progresul recapitulării, apoi revine la ecranul inițial cu butonul „Activează”. Animația de pornire poate fi redată din nou. Folosește-l numai dacă vrei să reîncepi. Pentru încheiere, lasă insigna pe ecran."
 ];
 
   function render() {
@@ -55,6 +88,7 @@
     nextBtn.innerHTML = slideIndex === slides.length - 2 ? '<span>FINALUL</span> →' : '<span>URMĂTORUL</span> →';
     pips.innerHTML = slides.map((_, i) => `<button class="pip ${i === slideIndex ? 'active' : i < slideIndex ? 'done' : ''}" data-slide="${i}" title="Slide ${i+1}" aria-label="Mergi la slide-ul ${i+1}" ${i === slideIndex ? 'aria-current="step"' : ''}></button>`).join('');
     noteContent.textContent = speakerNotes[slideIndex];
+    scheduleSceneFit();
     if (history.replaceState) history.replaceState(null, '', `#slide-${slideIndex + 1}`);
   }
   function go(index){const target=Math.max(0,Math.min(slides.length-1,index));if(target===slideIndex)return;document.getElementById('stage').classList.remove('scene-cut');void document.getElementById('stage').offsetWidth;document.getElementById('stage').classList.add('scene-cut');slideIndex=target;render();const title=slides[slideIndex].querySelector('h1,h2');title.tabIndex=-1;title.focus({preventScroll:true});}
@@ -64,7 +98,12 @@
   nextBtn.addEventListener('click',next);
   document.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click',next));
   pips.addEventListener('click',e => {const p=e.target.closest('[data-slide]');if(p)go(Number(p.dataset.slide))});
-  document.getElementById('restartBtn').addEventListener('click',()=>{viewedTakeaways.clear();showTakeaway(0);wordRound=0;resetWords();resetTrain();questionIndex=0;displayQuestion();document.querySelectorAll('.selected').forEach(el=>el.classList.remove('selected'));resetPromptExploration();document.getElementById('exitFeedback').textContent='Alege și deblochează insigna de detectiv.';go(0)});
+  function restartMission(){
+    // Reload the initial document so every activity, dialog and animation resets.
+    history.replaceState(null,'',location.pathname+location.search);
+    location.reload();
+  }
+  document.getElementById('restartBtn').addEventListener('click',restartMission);
   document.querySelector('.brand').addEventListener('click',e=>{e.preventDefault();go(0)});
   const savedIndex = Number((location.hash.match(/slide-(\d+)/)||[])[1]);
   if(savedIndex >= 1 && savedIndex <= slides.length) slideIndex=savedIndex-1;
@@ -111,8 +150,16 @@
     }
     const note=document.createElement('p');note.className='clue-note';note.textContent=info.note;panel.append(title,flow,note);
   }
+  let useCardAnimations=[];
   document.querySelectorAll('.use-card').forEach(card=>card.addEventListener('click',()=>{
+    if(card.classList.contains('selected'))return;
+    useCardAnimations.forEach(animation=>animation.cancel());useCardAnimations=[];
+    const useCards=[...document.querySelectorAll('.use-card')];
+    const before=useCards.map(element=>element.getBoundingClientRect());
+    const firstReveal=!document.getElementById('slide-2').classList.contains('has-explanation');
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     document.querySelectorAll('.use-card').forEach(c=>{c.classList.toggle('selected',c===card);c.setAttribute('aria-pressed',String(c===card));});
+    document.getElementById('slide-2').classList.add('has-explanation');
     const info=useExplanations[card.dataset.reveal];
     const reveal=document.getElementById('useReveal');reveal.hidden=false;reveal.textContent='';reveal.classList.add('expanded');
     const icon=document.createElement('span');icon.textContent=info.emoji;icon.setAttribute('aria-hidden','true');
@@ -124,6 +171,25 @@
     const clueButton=document.createElement('button');clueButton.className='secondary clue-open';clueButton.textContent='🔎 VEZI INDICIUL';clueButton.setAttribute('aria-haspopup','dialog');clueButton.setAttribute('aria-controls','clueModal');
     clueButton.addEventListener('click',()=>{showSituationClue(card.dataset.reveal);openDialog(document.getElementById('clueModal'));});
     body.append(clueButton);reveal.append(icon,body);
+    cancelAnimationFrame(fitFrame);fitActiveScene();
+    if(!reducedMotion){
+      if(window.innerWidth>1000){
+        const zoom=Number(document.getElementById('slide-2').style.zoom)||1;
+        useCards.forEach((element,i)=>{
+          const after=element.getBoundingClientRect(),old=before[i];
+          if(!after.width || !after.height)return;
+          useCardAnimations.push(element.animate([
+            {transformOrigin:'top left',transform:`translate(${(old.left-after.left)/zoom}px,${(old.top-after.top)/zoom}px) scale(${old.width/after.width},${old.height/after.height})`},
+            {transformOrigin:'top left',transform:'translate(0,0) scale(1,1)'}
+          ],{duration:480,easing:'cubic-bezier(.22,1,.36,1)'}));
+        });
+      }
+      useCardAnimations.push(reveal.animate([
+        {opacity:0,transform:`translateY(${firstReveal?22:10}px)`},
+        {opacity:1,transform:'translateY(0)'}
+      ],{duration:360,delay:firstReveal&&window.innerWidth>1000?160:0,easing:'ease-out',fill:'backwards'}));
+    }
+
     if(window.matchMedia('(max-width: 650px)').matches)reveal.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   }));
 
@@ -198,7 +264,31 @@
     {clue:'Vreau să zbor în spațiu!',rest:' Construiesc o ',prefix:'Vreau să zbor în spațiu! Construiesc o ',hint:'Context nou: ce se potrivește cu „să zbor în spațiu”?',fit:'rachetă',tail:[' care',' ajunge',' pe',' Lună','.']}
   ];
   let wordRound=0, chosenWord='', chunkIndex=0;
+  let wordAnimations=[];
+  const wordLayoutElements=()=>[document.getElementById('wordInstruction'),document.querySelector('.word-workshop'),document.getElementById('wordResponse'),document.getElementById('wordGeneration'),document.getElementById('contextHint'),document.getElementById('wordTakeaways'),document.getElementById('contextAction')];
+  function beginWordChange(){
+    wordAnimations.forEach(animation=>animation.cancel());wordAnimations=[];
+    return new Map(wordLayoutElements().filter(el=>el.getClientRects().length).map(el=>[el,el.getBoundingClientRect()]));
+  }
+  function finishWordChange(before,entering=[]){
+    cancelAnimationFrame(fitFrame);fitActiveScene();
+    if(!document.getElementById('slide-4').classList.contains('active')||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    const zoom=Number(document.getElementById('slide-4').style.zoom)||1;
+    wordLayoutElements().forEach(el=>{
+      if(!el.getClientRects().length)return;
+      const old=before.get(el),next=el.getBoundingClientRect();
+      if(old && Math.abs(old.top-next.top)>2){
+        wordAnimations.push(el.animate([{transform:`translateY(${(old.top-next.top)/zoom}px)`},{transform:'translateY(0)'}],{duration:420,easing:'cubic-bezier(.22,1,.36,1)'}));
+      }else if(!old){entering.push(el);}
+    });
+    [...new Set(entering)].forEach((el,i)=>{
+      if(!el.getClientRects().length)return;
+      wordAnimations.push(el.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'translateY(0)'}],{duration:360,delay:Math.min(i*45,135),easing:'ease-out',fill:'backwards'}));
+    });
+  }
+
   function resetWords(){
+    const previousLayout=beginWordChange();
     chosenWord='';chunkIndex=0;
     document.getElementById('wordChoices').hidden=false;
     const prompt=document.querySelector('.user-speech');prompt.textContent='';
@@ -214,6 +304,7 @@
     document.getElementById('nextChunk').disabled=false;
     document.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
     document.getElementById('chunkExplanation').textContent='Apasă și urmărește cum fiecare bucată nouă devine parte din context.';
+    finishWordChange(previousLayout,[document.querySelector('.user-speech'),document.getElementById('wordChoices'),document.getElementById('wordInstruction')]);
   }
   document.querySelectorAll('.choice').forEach(button=>button.addEventListener('click',()=>{
     const round=wordRounds[wordRound];
@@ -225,6 +316,7 @@
       sentence.append(clue,document.createTextNode(round.rest),wrong);
       openDialog(document.getElementById('wordErrorModal'));return;
     }
+    const previousLayout=beginWordChange();
     chosenWord=button.dataset.word;chunkIndex=0;
     document.getElementById('wordChoices').hidden=true;
     document.querySelector('.word-gap').textContent=chosenWord;
@@ -239,9 +331,11 @@
       document.getElementById('contextDiscoveryExplanation').textContent=wordRound===0?'„Mi-e foame!” face parte din context: îți spune că vorbim despre mâncare. De aceea „pizza” se potrivește mai bine decât „rachetă”. Contextul include și restul propoziției, nu doar indiciul evidențiat.':'„Vreau să zbor în spațiu!” face parte din context: acum vorbim despre o călătorie în spațiu. De aceea „rachetă” se potrivește. Același set de opțiuni, alt context!';
       openDialog(document.getElementById('contextDiscoveryModal'));
     });
+    finishWordChange(previousLayout,[clueButton,document.querySelector('.word-gap'),document.getElementById('wordInstruction')]);
     clueButton.focus({preventScroll:true});
   }));
   function startWordGeneration(){
+    const previousLayout=beginWordChange();
     const round=wordRounds[wordRound];
     document.getElementById('wordInstruction').dataset.actionIcon='👆';
     document.getElementById('wordInstruction').innerHTML='<b>2 · Construiți răspunsul!</b> Apăsați pe „Adaugă următoarea bucată” până se termină propoziția.';
@@ -251,6 +345,7 @@
     context.textContent=round.prefix+chosenWord;sentence.append(context);
     document.getElementById('nextChunk').disabled=false;
     document.getElementById('chunkExplanation').textContent='Și textul nou intră în context! AI folosește acum toată propoziția de mai sus ca să o continue.';
+    finishWordChange(previousLayout,[document.getElementById('wordInstruction')]);
     document.getElementById('nextChunk').focus({preventScroll:true});
   }
   document.getElementById('contextDiscoveryClose').addEventListener('click',()=>document.getElementById('contextDiscoveryModal').close());
@@ -263,7 +358,9 @@
   });
   document.getElementById('wordSuccessClose').addEventListener('click',()=>document.getElementById('wordSuccessModal').close());
   document.getElementById('wordSuccessModal').addEventListener('close',()=>{
+    const previousLayout=beginWordChange();
     document.getElementById('contextAction').hidden=false;
+    finishWordChange(previousLayout,[document.getElementById('wordTakeaways')]);
     const conclusion=document.querySelector('#wordTakeaways h3');conclusion.tabIndex=-1;conclusion.focus({preventScroll:true});conclusion.scrollIntoView({block:'nearest',behavior:'instant'});
   });
   document.getElementById('wordErrorClose').addEventListener('click',()=>document.getElementById('wordErrorModal').close());
@@ -355,9 +452,8 @@
     if(exitCorrect){openDialog(badgeModal);}
     else{document.querySelector('[data-exit="copy"]').focus({preventScroll:true});}
   });
-  let restartingFromBadge=false;
-  badgeModal.addEventListener('close',()=>{if(!restartingFromBadge)document.querySelector('[data-exit="check"]').focus({preventScroll:true});restartingFromBadge=false;});
-  document.getElementById('badgeRestart').addEventListener('click',()=>{restartingFromBadge=true;badgeModal.close();document.getElementById('restartBtn').click();});
+  badgeModal.addEventListener('close',()=>document.querySelector('[data-exit="check"]').focus({preventScroll:true}));
+  document.getElementById('badgeRestart').addEventListener('click',restartMission);
   document.querySelectorAll('[data-exit]').forEach(b=>b.addEventListener('click',()=>{
     exitCorrect=b.dataset.exit==='check';
     exitModal.classList.toggle('word-success-modal',exitCorrect);
