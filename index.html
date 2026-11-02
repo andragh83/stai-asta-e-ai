@@ -116,7 +116,7 @@
         <h2 id="slide5title">AI POATE <span class="accent-yellow">SĂ DEA FAIL?</span></h2>
         <p class="action-instruction" data-action-icon="🗳️">Citiți afirmația, votați în clasă, apoi alegeți ADEVĂRAT sau FALS.</p><div class="boss-layout">
           <div class="boss-figure" aria-hidden="true"><div class="boss-halo">⚡</div><div class="boss-face boss-ai"><div class="ai-hud"><div class="hud-orbit orbit-one"></div><div class="hud-orbit orbit-two"></div><div class="hud-orbit orbit-three"></div><div class="hud-ticks"></div><div class="hud-sweep"></div><div class="hud-core"><strong>A.I.</strong><span class="boss-hud-status">SIGUR PE RĂSPUNS…</span></div></div></div><div class="boss-caption">CĂPITANUL SIGUR-DE-EL<br/>„Sursa? Am visat-o.”</div></div>
-          <div class="quiz-panel"><div class="small-tag">ADEVĂRAT SAU FALS?</div><div class="quiz-progress" id="quizProgress">ÎNTREBAREA 1 / 3</div><h3 id="quizQuestion">AI poate inventa informații și totuși să sune foarte sigur.</h3><div class="answer-row"><button class="answer" id="trueBtn">✅ ADEVĂRAT</button><button class="answer" id="falseBtn">❌ FALS</button></div><div class="quiz-feedback" id="quizFeedback" aria-live="polite">Alege răspunsul.</div><button class="secondary next-question" id="nextQuestion" disabled>URMĂTOAREA →</button></div>
+          <div class="quiz-panel"><div class="small-tag">ADEVĂRAT SAU FALS?</div><div class="quiz-progress" id="quizProgress">ÎNTREBAREA 1 / 3</div><h3 id="quizQuestion">AI poate inventa informații și totuși să sune foarte sigur.</h3><div class="answer-row"><button class="answer" id="trueBtn">ADEVĂRAT</button><button class="answer" id="falseBtn">FALS</button></div><div class="quiz-feedback" id="quizFeedback" aria-live="polite">Alege răspunsul.</div><button class="secondary next-question" id="nextQuestion" disabled>URMĂTOAREA →</button></div>
         </div>
         <div class="boss-rule">Regula de aur: <strong>AI poate greși. Verifică informațiile importante!</strong></div>
       </section>
@@ -209,10 +209,18 @@
     <p class="quiz-result-question" id="quizResultQuestion"></p>
     <p class="success-loop" id="quizResultAnswer"></p>
     <p id="quizResultExplanation"></p>
+    <aside id="hallucinationCase" class="hallucination-case" hidden aria-label="Exemplu real de halucinație AI">
+      <h4>⚖️ Caz real: avocații și procesele inventate</h4>
+      <p>În 2023, în SUA, un avocat a cerut ajutorul ChatGPT pentru un proces. AI a inventat alte procese și hotărâri ale judecătorilor, care păreau reale.</p>
+      <p>Avocații au folosit acele informații în documentele trimise instanței fără să le verifice corect și le-au susținut chiar după ce au fost puse la îndoială.</p>
+      <p class="case-consequence">💸 Rezultatul: doi avocați și firma lor au primit împreună o sancțiune de <b>5.000 de dolari</b>.</p>
+      <p><b>Lecția:</b> un răspuns convingător nu este o sursă. Verifică dacă informațiile și sursele chiar există!</p>
+      <a href="https://law.justia.com/cases/federal/district-courts/new-york/nysdce/1%3A2022cv01461/575368/54/" target="_blank" rel="noopener">Sursa: hotărârea instanței, Mata v. Avianca · 22 iunie 2023</a>
+    </aside>
     <figure id="mediaLiteracyDemo" class="media-literacy-demo" hidden>
-      <img src="assets/ai-media-demo.png" alt="Exemplu generat cu AI, cu trei anomalii încercuite pentru o demonstrație de verificare a imaginilor" />
-      <figcaption><b>🔎 Exemplu creat special pentru lecție.</b> Detaliile au fost introduse intenționat pentru a exersa observarea.</figcaption><ol class="media-clues"><li><b>Mâna:</b> prea multe degete.</li><li><b>Paharul:</b> o margine neobișnuită, care merită verificată.</li><li><b>Lingura:</b> două capete pentru o singură coadă.</li></ol>
-      <p class="media-caution"><b>Indiciu ≠ dovadă!</b> Unele imagini AI nu au erori vizibile. Și fotografiile reale pot părea ciudate. Verifică sursa, autorul și alte imagini ale evenimentului.</p>
+      <div class="annotated-media"><img src="assets/pope-puffer-ai-example.png" alt="Imagine falsă generată cu AI: Papa Francisc într-o geacă albă voluminoasă, devenită virală în 2023" /></div>
+      <figcaption><b>IMAGINE GENERATĂ CU AI · 2023</b><br/>Pare o fotografie a Papei Francisc, dar nu surprinde o scenă reală. Imaginea cu geaca albă a circulat pe internet și a fost verificată ca fiind generată cu AI. <a href="https://fullfact.org/news/puffer-coat-pope-ai-generated/" target="_blank" rel="noopener">Vezi verificarea Full Fact</a>.</figcaption>
+      <p class="media-caution"><b>De unde știm că este falsă?</b> Verificările au urmărit originea imaginii și au identificat-o ca fiind creată cu AI. Nu ne bazăm pe faptul că geaca pare neobișnuită sau pe presupuse greșeli vizuale. Caută sursa inițială și verificări independente înainte să distribui.</p>
     </figure>
     <button class="primary" id="quizResultClose">AM ÎNȚELES! →</button>
   </dialog>
