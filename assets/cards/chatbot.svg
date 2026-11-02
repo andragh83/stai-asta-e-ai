@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-label="Tu întrebi cât este o felie din patru. Chatbotul construiește răspunsul bucată cu bucată.">
+<rect width="400" height="240" rx="18" fill="#10152d"/>
+<g font-family="system-ui,sans-serif"><circle cx="35" cy="43" r="19" fill="#a077ff"/><circle cx="35" cy="38" r="6" fill="#fff"/><path d="M24 54q11-16 22 0" fill="#fff"/>
+<rect x="67" y="18" width="312" height="60" rx="15" fill="#f9f7ff"/><path d="M68 52L56 67h20" fill="#f9f7ff"/><text x="85" y="43" font-size="20" font-weight="850" fill="#252243">O felie din 4 felii egale:</text><text x="85" y="66" font-size="20" fill="#252243">ce fracție reprezintă?</text>
+<path d="M209 88v18m-8-8l8 8 8-8" fill="none" stroke="#65e2f1" stroke-width="4" stroke-linecap="round"/>
+<rect x="16" y="124" width="38" height="33" rx="10" fill="#65e2f1"/><path d="M35 124v-9" stroke="#65e2f1" stroke-width="3"/><circle cx="35" cy="113" r="4" fill="#ff6aaa"/><circle cx="28" cy="139" r="4" fill="#10152d"/><circle cx="43" cy="139" r="4" fill="#10152d"/>
+<rect x="67" y="116" width="312" height="71" rx="16" fill="#20283b" stroke="#65e2f1" stroke-width="2"/>
+<g fill="#1b4338"><rect x="80" y="134" width="68" height="35" rx="7"/><rect x="155" y="134" width="59" height="35" rx="7"/><rect x="221" y="134" width="97" height="35" rx="7"/></g>
+<g fill="#80f2a7" font-size="22" font-weight="850"><text x="114" y="159" text-anchor="middle">Este</text><text x="184" y="159" text-anchor="middle">un</text><text x="270" y="159" text-anchor="middle">sfert.</text></g><path d="M331 136v30" stroke="#80f2a7" stroke-width="3"/>
+<text x="200" y="221" text-anchor="middle" fill="#65e2f1" font-size="20" font-weight="850">TEXTUL SE CONSTRUIEȘTE →</text></g></svg>

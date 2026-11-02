@@ -1,6 +1,27 @@
 (() => {
   'use strict';
+  function openDialog(dialog){
+    dialog.showModal();
+    const heading=dialog.querySelector('h3');
+    if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}
+    dialog.scrollTop=0;
+  }
   const slides = [...document.querySelectorAll('.slide')];
+  const activationGate=document.getElementById('activationGate');
+  const activateButton=document.getElementById('activateAI');
+  activateButton.addEventListener('click',()=>{
+    if(activateButton.disabled)return;
+    activateButton.disabled=true;activateButton.textContent='ACTIVARE…';
+    activationGate.classList.add('activating');
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(()=>{
+      activationGate.hidden=true;
+      document.body.classList.remove('awaiting-activation');
+      document.querySelector('.app-shell').inert=false;
+      go(0);
+      const title=document.getElementById('slide1title');title.tabIndex=-1;title.focus({preventScroll:true});
+    },reduced?0:2200);
+  });
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   const slideCount = document.getElementById('slideCount');
@@ -10,13 +31,13 @@
   let slideIndex = 0;
 
   const speakerNotes = [
-    "45 secunde · Deschiderea misiunii\nÎntreabă: „Câți ați folosit vreodată AI?” Apoi: „Dar fără să știți?” Prezintă-l pe Pixel, detectivul de tipare, și pe Hamlet, cățelul curios.\nSpune: „AI nu e magie. Hai să vedem ce face și unde poate greși!” Apasă „Start misiune”.\nInstrucțiunile de acțiune sunt în casete albastre, cu emoji. Timpurile sunt repere pentru tine; nu există cronometru sau avansare automată.\nTaste: ←/→ schimbă scenele, N arată/ascunde notițele, F activează ecranul complet. Notițele apar și pe proiector: ascunde-le cu N înainte să continui.",
-    "1 minut · AI în viața reală\nCere clasei să aleagă 1–2 carduri. Apăsarea afișează analogia, mecanismul, limita și o întrebare. Sub explicație, apasă „Vezi indiciul”: modalul arată ce observă sistemul → ce face cu informația. Închide cu „Am înțeles!” sau Escape.\nDefinește indiciul: o informație care ajută la o estimare sau alegere, nu o dovadă sigură.\nRecomandări: vizionarea clipurilor oferă semnale despre interese. Face Unlock: caracteristicile feței sunt comparate cu cele înregistrate. NPC: intrarea în câmpul vizual declanșează regula de urmărire; asta nu înseamnă învățare. Chatbot: cuvintele din mesaj oferă context pentru răspuns.\nNu citi toate explicațiile integral: alege analogiile după interesul clasei.",
-    "1 min 45 sec · Antrenorii lui Pixel\nCere copiilor să numească animalul și apasă CÂINE sau PISICĂ după vot. Ordinea: câine, pisică, câine, pisică, câine. Exemplele corecte se adună în dreapta. O alegere greșită afișează feedback în panoul din stânga și nu avansează; aici nu apare un modal.\nDupă 5 exemple, priviți câinele nou din cardul „Testul”. Întreabă: „Ce credeți că va prezice Pixel?” Apasă „Vezi predicția lui Pixel”: apare reveal-ul mare „CÂINE!”. „Reîncepe” resetează doar această demonstrație.\nIdeea: exemple → tipare → predicții. Într-un model real, antrenarea ajustează parametri matematici; nu înseamnă doar memorarea imaginilor. Aici exemplele și predicția sunt pregătite: nu antrenăm un AI real și cinci exemple nu garantează recunoașterea corectă.",
-    "2 minute · Context și generarea textului\nPasul 1: citește „Mi-e foame! Aș mânca o…”. Clasa votează pizza, rachetă sau pernă. Indiciul „Mi-e foame!” este evidențiat cu albastru și subliniat. Contextul este tot textul disponibil, nu doar indiciul evidențiat.\nPizza deblochează pasul 2. Celelalte alegeri deschid un modal cu propoziția trăsnită și un smiley; închide-l și reîncercați. Precizează că alegem continuarea obișnuită pentru exercițiu, nu singura propoziție posibilă.\nPasul 2: întregul „Mi-e foame! Aș mânca o pizza” este noul context, albastru și subliniat. Apasă de 5 ori „Adaugă următoarea bucată”; predicțiile apar cu verde. Fiecare bucată intră la rândul ei în context, chiar dacă verdele rămâne pentru a arăta ce s-a adăugat.\nUltima apăsare deschide modalul de succes despre tokenuri. Închide-l, apoi „Schimbă contextul”: acum alegerea așteptată este rachetă. Repetă dacă timpul permite.\nUn model real calculează continuări din context și tiparele învățate. Bucățile de aici sunt pregătite didactic; nu reprezintă tokenizarea reală a unui model.",
-    "1 min 45 sec · Quiz: AI poate greși\nCitește fiecare afirmație și cere vot adevărat/fals înainte de click. Răspunsurile celor 3 întrebări: ADEVĂRAT, FALS, FALS.\nFiecare alegere deschide un modal de succes sau eroare cu răspunsul corect și explicația. Închide-l cu „Am înțeles!” sau Escape, apoi apasă „Următoarea”. Nu se trece automat la întrebarea următoare. După întrebarea 3, „Reia provocarea” reia quiz-ul.\nExplică halucinația: AI poate genera informații false, chiar într-un răspuns convingător. Imaginile pot fi generate sau modificate. Viteza și tonul sigur nu dovedesc adevărul.\nÎntreabă: „Unde am verifica?” Exemple: manual, sursă oficială, adult de încredere.",
+    "45 secunde · Deschiderea misiunii\nÎntreabă: „Câți ați folosit vreodată AI?” Apoi: „Dar fără să știți?” Prezintă-l AI-ul, detectivul AI, și pe Hamlet, cățelul curios.\nSpune: „AI nu e magie. Hai să vedem ce face și unde poate greși!” Apasă „Start misiune”.\nInstrucțiunile de acțiune sunt în casete albastre, cu emoji. Timpurile sunt repere pentru tine; nu există cronometru sau avansare automată.\nTaste: ←/→ schimbă scenele, N arată/ascunde notițele, F activează ecranul complet. Notițele apar și pe proiector: ascunde-le cu N înainte să continui.",
+    "1 minut · AI în viața reală\nCere clasei să aleagă 1–2 carduri. Ilustrațiile arată schematic mecanismul fiecărui card: recomandarea unui clip, compararea feței, regula paznicului și generarea textului. Apăsarea afișează analogia, mecanismul, limita și o întrebare. Sub explicație, apasă „Vezi indiciul”: modalul arată ce observă sistemul → ce face cu informația. Închide cu „Am înțeles!” sau Escape.\nDefinește indiciul: o informație care ajută la o estimare sau alegere, nu o dovadă sigură.\nRecomandări: vizionarea clipurilor oferă semnale despre interese. Face Unlock: caracteristicile feței sunt comparate cu cele înregistrate. NPC: intrarea în câmpul vizual declanșează regula de urmărire; asta nu înseamnă învățare. Chatbot: cuvintele din mesaj oferă context pentru răspuns.\nNu citi toate explicațiile integral: alege analogiile după interesul clasei.",
+    "1 min 45 sec · Antrenorii AI-ului\nCere copiilor să numească animalul și apasă CÂINE sau PISICĂ după vot. Fotografiile meme, fără text suprapus: Doge, Polite Cat, Walter, Grumpy Cat, Smiling Dog. Ordinea: câine, pisică, câine, pisică, câine. Exemplele corecte se adună în dreapta. O alegere greșită afișează feedback în panoul din stânga și nu avansează; aici nu apare un modal.\nDupă 5 exemple, priviți fotografia nouă, cu un Shiba Inu în zăpadă, din cardul „Testul”. Întreabă: „Ce credeți că va răspunde AI?” Apasă „Vezi răspunsul AI-ului”: apare reveal-ul mare „CÂINE!”. „Reîncepe” resetează doar această demonstrație.\nIdeea pentru copii: vede exemple → învață ce seamănă → încearcă să recunoască un animal nou. Folosește „ce au în comun” în loc de „tipare” și „ce crede AI că este” în loc de „predicție”. Într-un model real, antrenarea ajustează parametri matematici; nu înseamnă doar memorarea imaginilor. Aici exemplele și predicția sunt pregătite: nu antrenăm un AI real și cinci exemple nu garantează recunoașterea corectă.",
+    "2 minute · Context și generarea textului\nPasul 1: citește „Mi-e foame! Aș mânca o…”. Clasa votează pizza, rachetă sau pernă. La început, propoziția nu are indicii evidențiate. După alegerea corectă, „Mi-e foame!” devine un buton albastru subliniat. Apasă-l: se deschide modalul care explică noțiunea de context și de ce indiciul duce la pizza. După închidere se deblochează pasul 2. Contextul este tot textul disponibil, nu doar indiciul evidențiat.\nPizza deblochează descoperirea contextului. Celelalte alegeri deschid un modal cu propoziția trăsnită și un smiley; închide-l și reîncercați. Precizează că alegem continuarea obișnuită pentru exercițiu, nu singura propoziție posibilă.\nPasul 2: întregul „Mi-e foame! Aș mânca o pizza” este noul context, albastru și subliniat. Apasă de 5 ori „Adaugă următoarea bucată”; predicțiile apar cu verde. Fiecare bucată intră la rândul ei în context, chiar dacă verdele rămâne pentru a arăta ce s-a adăugat.\nUltima apăsare dezvăluie cele două casete „De reținut” despre context și secretul chatbotului și deschide modalul de succes despre tokenuri: bucăți de text, nu neapărat cuvinte întregi. Folosește analogia pieselor LEGO. Explică și contorul de consum: în multe servicii AI pentru aplicații, tokenurile citite și generate contribuie la cost; tokenul nu este o monedă, iar într-o aplicație gratuită sau cu abonament nu se plătește neapărat separat fiecare mesaj. Demo-ul nu apelează un AI plătit. După închiderea modalului, citește concluziile cu clasa. Abia acum apare butonul „Schimbă contextul”, sub explicații; la începutul exercițiului este ascuns. Aceste casete sunt ascunse până la completarea propoziției și se ascund din nou când schimbi contextul. Închide-l, apoi „Schimbă contextul”: acum alegerea așteptată este rachetă. Repetă dacă timpul permite.\nUn model real calculează continuări din context și tiparele învățate. Bucățile de aici sunt pregătite didactic; nu reprezintă tokenizarea reală a unui model.",
+    "1 min 45 sec · Quiz: AI poate greși\nCitește fiecare afirmație și cere vot adevărat/fals înainte de click. Răspunsurile celor 3 întrebări: ADEVĂRAT, FALS, FALS.\nFiecare alegere deschide un modal de succes sau eroare cu răspunsul corect și explicația. Închide-l cu „Am înțeles!” sau Escape, apoi apasă „Următoarea”. Nu se trece automat la întrebarea următoare. După întrebarea 3, „Reia provocarea” reia quiz-ul.\nExplică halucinația: AI poate genera informații false, chiar într-un răspuns convingător. La întrebarea despre imagini, modalul evidențiază ideea „Imaginile și videoclipurile pot fi generate sau modificate cu AI” și arată o imagine demonstrativă cu anomalii încercuite. Cere clasei să descrie indiciile. Explică: erorile vizuale sunt motive de verificare, nu o dovadă sigură; unele imagini AI nu au erori vizibile, iar fotografiile reale pot avea detalii neobișnuite. Verificăm sursa și alte relatări. Viteza și tonul sigur nu dovedesc adevărul.\nÎntreabă: „Unde am verifica?” Exemple: manual, sursă oficială, adult de încredere.",
     "1 min 45 sec · AI ca antrenor și regula VIR\nCere clasei să aleagă mesajul care ajută la învățare, apoi explorați și celălalt card. Fiecare alegere deschide un modal: succes pentru explicații și exerciții, eroare pentru tema făcută în locul copilului. Închide fiecare modal.\nTrebuie apăsate ambele carduri, în orice ordine. După închiderea celui de-al doilea modal, apar „AI ca antrenor” și Nova: „puterea ta: întrebările bune”. Apăsarea repetată a aceluiași card nu deblochează mesajele.\nÎntreabă: „Ce ai putea cere după explicația cu pizza?” De exemplu: un exercițiu și un indiciu, fără răspunsul direct.\nApasă butonul centrat „VIR · Very Important Rule”, disponibil și înainte de explorarea cardurilor. Citește avertizarea: nu trimite parole, adresa, telefonul, școala sau documente personale. Pentru fracții, AI nu are nevoie să știe unde locuiești. La îndoială, întreabă un adult. Închide modalul.",
-    "1 minut · Recapitulare și insigna de detectiv\nParcurge cu săgețile de sub card toate cele 9 idei: indiciu ≠ dovadă; AI în jurul nostru; reguli ≠ învățare; exemple → tipare → predicții; context; tokenuri; verificare; AI ca antrenor; date personale. Spune câte o propoziție pe idee. Tastele ←/→ schimbă scenele principale, nu cardurile recapitulării.\nUltima provocare apare numai după vizualizarea tuturor celor 9 idei și rămâne deblocată dacă revii la una anterioară.\nCere vot: cred imediat sau caut o sursă? Prima variantă deschide modalul de eroare; închideți și reîncercați. „Caut o sursă de încredere” deschide explicația de succes. După închiderea ei apare separat modalul „Insignă de detectiv deblocată!”.\nButonul „Reia misiunea” din modal resetează exercițiile, explorarea cardurilor și progresul recapitulării, apoi revine la prima scenă. Folosește-l numai dacă vrei să reîncepi. Pentru încheiere, lasă insigna pe ecran."
+    "1 minut · Recapitulare și insigna de detectiv\nParcurge cu săgețile de sub card cele 8 idei, cu accent pe ce pot folosi copiii: AI învață din exemple; contextul; tokenurile (arată cele două împărțiri ilustrative: cuvinte întregi versus un cuvânt împărțit; bucățile nu sunt neapărat silabe și împărțirea reală depinde de model); costul textului (analogia traficului de internet din abonamentul telefonului: mai mult text înseamnă, de obicei, mai multe tokenuri; plata depinde de serviciu); halucinațiile și verificarea; imaginile/video create ori schimbate cu AI; AI ca antrenor; datele personale. Exemplele de utilizare și NPC-urile nu mai au carduri separate: sunt introducere, nu mesajele principale. Spune câte o propoziție pe idee. Tastele ←/→ schimbă scenele principale, nu cardurile recapitulării.\nUltima provocare apare numai după vizualizarea tuturor celor 8 idei și rămâne deblocată dacă revii la una anterioară.\nCere vot: cred imediat sau caut o sursă? Prima variantă deschide modalul de eroare; închideți și reîncercați. „Caut o sursă de încredere” deschide explicația de succes. După închiderea ei apare separat modalul „Insignă de detectiv deblocată!”.\nButonul „Reia misiunea” din modal resetează exercițiile, explorarea cardurilor și progresul recapitulării, apoi revine la prima scenă. Folosește-l numai dacă vrei să reîncepi. Pentru încheiere, lasă insigna pe ecran."
 ];
 
   function render() {
@@ -55,7 +76,7 @@
   document.getElementById('fullscreenToggle').addEventListener('click',toggleFullscreen);
   document.addEventListener('keydown', e=>{
     const tag = document.activeElement?.tagName;
-    if(document.querySelector('dialog[open]'))return;
+    if(!activationGate.hidden || document.querySelector('dialog[open]'))return;
     if(tag === 'INPUT' || tag === 'TEXTAREA') return;
     if(e.key === 'ArrowRight' || e.key === 'PageDown'){e.preventDefault();next()}
     if(e.key === 'ArrowLeft' || e.key === 'PageUp'){e.preventDefault();previous()}
@@ -101,53 +122,79 @@
       const paragraph=document.createElement('p');paragraph.className=cls;const heading=document.createElement('b');heading.textContent=label;paragraph.append(heading,document.createTextNode(text));body.append(paragraph);
     }
     const clueButton=document.createElement('button');clueButton.className='secondary clue-open';clueButton.textContent='🔎 VEZI INDICIUL';clueButton.setAttribute('aria-haspopup','dialog');clueButton.setAttribute('aria-controls','clueModal');
-    clueButton.addEventListener('click',()=>{showSituationClue(card.dataset.reveal);document.getElementById('clueModal').showModal();});
+    clueButton.addEventListener('click',()=>{showSituationClue(card.dataset.reveal);openDialog(document.getElementById('clueModal'));});
     body.append(clueButton);reveal.append(icon,body);
+    if(window.matchMedia('(max-width: 650px)').matches)reveal.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
   }));
 
   document.getElementById('clueModalClose').addEventListener('click',()=>document.getElementById('clueModal').close());
 
   // Level 03 — training simulation, NOT an actual ML model.
-  const examples=[['🐶','CÂINE'],['🐱','PISICĂ'],['🐕','CÂINE'],['🐈','PISICĂ'],['🐩','CÂINE']];
-  let seen=0, predictionShown=false;
+  const examples=[['doge.jpg','CÂINE','Doge'],['polite-cat.jpg','PISICĂ','Polite Cat'],['walter.jpg','CÂINE','Walter'],['grumpy-cat.jpg','PISICĂ','Grumpy Cat'],['smiling-dog.jpg','CÂINE','Smiling Dog']];
+  function memeImage(file,name){const img=document.createElement('img');img.src='assets/memes/'+file;img.alt=name;img.decoding='async';return img;}
+  let seen=0, predictionShown=false, trainingBusy=false, trainingFeedbackTimer;
   const trainBtn=document.getElementById('trainBtn'), trainReset=document.getElementById('trainReset');
   const examplesRow=document.getElementById('examplesRow');
   const labelChoices=document.getElementById('labelChoices');
-  function resetTrain(){seen=0;predictionShown=false;examplesRow.innerHTML='<div class="empty-example">? <span>Aici apar animalele etichetate de voi.</span></div>';updateTrain();}
+  function resetTrain(){clearTimeout(trainingFeedbackTimer);document.querySelector('.training-screen').classList.remove('training-leave','training-enter');trainingBusy=false;seen=0;predictionShown=false;examplesRow.innerHTML='<div class="empty-example">? <span>Aici apar animalele etichetate de voi.</span></div>';updateTrain();}
   function updateTrain(){
+    document.getElementById('trainingStatus').classList.remove('is-error');
     const ready=seen===examples.length;
+    document.querySelectorAll('[data-label]').forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong');b.textContent=b.dataset.label;});
     document.getElementById('xpFill').style.width=`${seen/examples.length*100}%`;
     document.getElementById('xpText').textContent=`${seen} / 5 exemple`;
-    document.getElementById('trainStep').textContent=ready?'3 · TESTEAZĂ-L PE PIXEL':'1 · ÎNVAȚĂ-L PE PIXEL';
+    document.getElementById('trainStep').textContent=ready?'3 · TESTEAZĂ AI-UL':'1 · ANTRENEAZĂ AI-UL';
     const animal=document.getElementById('trainingAnimal');
-    animal.textContent=ready?'🤖':examples[seen][0];
-    animal.setAttribute('aria-label',ready?'Pixel, robotul':examples[seen][1]==='CÂINE'?'Câine':'Pisică');
-    document.getElementById('animalQuestion').textContent=ready?'Acum priviți animalul nou din dreapta.':'Ce animal este? Arată-i lui Pixel.';
-    document.getElementById('trainingStatus').textContent=ready?'Votați: câine sau pisică? Apoi dezvăluiți predicția lui Pixel.':seen===0?'Votați în clasă, apoi apăsați CÂINE sau PISICĂ.':'Etichetă corectă! Exemplul a fost adăugat. Ce animal urmează?';
+    animal.textContent='';
+    if(ready){animal.innerHTML='<div class="mini-ai-hud" aria-hidden="true">AI</div>';}else{animal.append(memeImage(examples[seen][0],examples[seen][2]));}
+    animal.setAttribute('aria-label',ready?'Interfață AI':examples[seen][1]==='CÂINE'?'Câine':'Pisică');
+    document.getElementById('animalQuestion').textContent=ready?'Acum priviți animalul nou din dreapta.':'Ce animal este? Arată-i AI-ului.';
+    document.getElementById('trainingStatus').textContent=ready?'Votați: câine sau pisică? Apoi descoperiți ce răspunde AI.':seen===0?'Votați în clasă, apoi apăsați CÂINE sau PISICĂ.':'Etichetă corectă! Exemplul a fost adăugat. Ce animal urmează?';
     labelChoices.hidden=ready;
     trainBtn.hidden=!ready;
     trainBtn.disabled=predictionShown;
-    document.getElementById('testPrediction').textContent=predictionShown?'':ready?'Exemplele sunt gata. Ce credeți că va răspunde Pixel?':'Mai întâi, etichetați cele 5 exemple din stânga.';
+    document.getElementById('testPrediction').textContent=predictionShown?'':ready?'Exemplele sunt gata. Ce credeți că va răspunde AI?':'Mai întâi, etichetați cele 5 exemple din stânga.';
     document.getElementById('predictionReveal').hidden=!predictionShown;
     document.getElementById('predictionDisclaimer').hidden=!predictionShown;
     document.getElementById('testCard').hidden=predictionShown;
-    trainBtn.textContent=predictionShown?'PREDICȚIE DEZVĂLUITĂ ✓':'VEZI PREDICȚIA LUI PIXEL →';
+    trainBtn.textContent=predictionShown?'RĂSPUNS DEZVĂLUIT ✓':'VEZI RĂSPUNSUL LUI AI →';
   }
   document.querySelectorAll('[data-label]').forEach(button=>button.addEventListener('click',()=>{
-    if(seen===examples.length)return;
-    const [emoji,label]=examples[seen];
-    if(button.dataset.label!==label){document.getElementById('trainingStatus').textContent='Mai uită-te o dată! Acesta este un '+(label==='CÂINE'?'câine':'pisică')+'. Alege eticheta potrivită ca să nu-l încurcăm pe Pixel.';return;}
-    if(seen===0)examplesRow.textContent='';
-    const chip=document.createElement('div');chip.className='example-chip';chip.innerHTML=`<span>${emoji}</span><small>${label}</small>`;examplesRow.append(chip);seen++;updateTrain();
-    if(seen===examples.length)trainBtn.focus({preventScroll:true});
+    if(seen===examples.length || trainingBusy)return;
+    document.querySelectorAll('[data-label]').forEach(b=>{b.classList.remove('correct','wrong');b.textContent=b.dataset.label;});
+    const [file,label,name]=examples[seen];
+    if(button.dataset.label!==label){document.getElementById('trainingStatus').classList.add('is-error');button.classList.add('wrong');button.textContent='✕ '+button.dataset.label;document.getElementById('trainingStatus').textContent='Mai uită-te o dată! Acesta este un '+(label==='CÂINE'?'câine':'pisică')+'. Alege eticheta potrivită ca să nu încurcăm AI-ul.';return;}
+    document.getElementById('trainingStatus').classList.remove('is-error');
+    trainingBusy=true;button.classList.add('correct');button.textContent='✓ '+button.dataset.label;
+    document.querySelectorAll('[data-label]').forEach(b=>{b.disabled=true;});
+    document.getElementById('trainingStatus').textContent='Corect! Adăugăm exemplul…';
+    trainingFeedbackTimer=setTimeout(()=>{
+      const screen=document.querySelector('.training-screen');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      screen.classList.add('training-leave');
+      trainingFeedbackTimer=setTimeout(()=>{
+        if(seen===0)examplesRow.textContent='';
+        const chip=document.createElement('div');chip.className='example-chip';
+        const caption=document.createElement('small');caption.textContent=label;
+        chip.append(memeImage(file,name),caption);examplesRow.append(chip);seen++;updateTrain();
+        screen.classList.remove('training-leave');screen.classList.add('training-enter');
+        document.querySelectorAll('[data-label]').forEach(b=>{b.disabled=true;});
+        trainingFeedbackTimer=setTimeout(()=>{
+          screen.classList.remove('training-enter');trainingBusy=false;
+          document.querySelectorAll('[data-label]').forEach(b=>{b.disabled=false;});
+          if(seen===examples.length)trainBtn.focus({preventScroll:true});
+        },reduced?0:380);
+      },reduced?0:220);
+    },700);
   }));
-  trainBtn.addEventListener('click',()=>{if(seen!==examples.length)return;predictionShown=true;updateTrain();document.getElementById('predictionReveal').focus({preventScroll:true});document.getElementById('predictionReveal').scrollIntoView({block:'nearest',behavior:'instant'});document.getElementById('trainingStatus').textContent='Exemple → tipare → predicție. Așa reprezentăm aici învățarea din exemple.';});
+  trainBtn.addEventListener('click',()=>{if(seen!==examples.length)return;predictionShown=true;updateTrain();document.getElementById('predictionReveal').focus({preventScroll:true});document.getElementById('predictionReveal').scrollIntoView({block:'nearest',behavior:'instant'});document.getElementById('trainingStatus').textContent='Vede exemple → învață ce seamănă → încearcă să recunoască un animal nou.';});
   trainReset.addEventListener('click',resetTrain);
+  updateTrain();
 
   // Level 04 — a scripted illustration of contextual text generation.
   const wordResponse=document.getElementById('wordResponse');
   const wordRounds=[
-    {clue:'Mi-e foame!',rest:' Aș mânca o ',prefix:'Mi-e foame! Aș mânca o ',hint:'Ce indiciu vă ajută să alegeți? „Mi-e foame!”',fit:'pizza',tail:[' cu',' brânză',' și',' roșii','.']},
+    {clue:'Mi-e foame!',rest:' Aș mânca o ',prefix:'Mi-e foame! Aș mânca o ',hint:'Ce variantă se potrivește cel mai bine cu propoziția?',fit:'pizza',tail:[' cu',' brânză',' și',' roșii','.']},
     {clue:'Vreau să zbor în spațiu!',rest:' Construiesc o ',prefix:'Vreau să zbor în spațiu! Construiesc o ',hint:'Context nou: ce se potrivește cu „să zbor în spațiu”?',fit:'rachetă',tail:[' care',' ajunge',' pe',' Lună','.']}
   ];
   let wordRound=0, chosenWord='', chunkIndex=0;
@@ -155,12 +202,14 @@
     chosenWord='';chunkIndex=0;
     document.getElementById('wordChoices').hidden=false;
     const prompt=document.querySelector('.user-speech');prompt.textContent='';
-    const clue=document.createElement('mark');clue.className='context-clue';clue.textContent=wordRounds[wordRound].clue;prompt.append(clue,document.createTextNode(wordRounds[wordRound].rest));
+    const clue=document.createElement('span');clue.className='context-prompt-clue';clue.textContent=wordRounds[wordRound].clue;prompt.append(clue,document.createTextNode(wordRounds[wordRound].rest));
     const gap=document.createElement('span');gap.className='word-gap';gap.textContent='___';prompt.append(gap);
     document.getElementById('wordInstruction').dataset.actionIcon='🗳️';
-    document.getElementById('wordInstruction').innerHTML='<b>1 · Voi sunteți modelul!</b> Citiți propoziția, votați în clasă și alegeți ce s-ar potrivi în spațiul liber.';
+    document.getElementById('wordInstruction').innerHTML='<b>1 · Pune-te în locul AI!</b> Citiți propoziția, votați în clasă și alegeți ce s-ar potrivi în spațiul liber.';
     wordResponse.textContent=wordRounds[wordRound].hint;
     document.getElementById('wordGeneration').hidden=true;
+    document.getElementById('wordTakeaways').hidden=true;
+    document.getElementById('contextAction').hidden=true;
     document.getElementById('generatedSentence').textContent='';
     document.getElementById('nextChunk').disabled=false;
     document.querySelectorAll('.choice').forEach(b=>b.classList.remove('selected'));
@@ -171,15 +220,29 @@
     document.querySelectorAll('.choice').forEach(c=>c.classList.toggle('selected',c===button));
     if(button.dataset.word!==round.fit){
       const sentence=document.getElementById('wrongSentence');sentence.textContent='';
-      const clue=document.createElement('mark');clue.className='context-clue';clue.textContent=round.clue;
+      const clue=document.createElement('span');clue.textContent=round.clue;
       const wrong=document.createElement('strong');wrong.textContent=button.dataset.word+'.';
       sentence.append(clue,document.createTextNode(round.rest),wrong);
-      document.getElementById('wordErrorModal').showModal();return;
+      openDialog(document.getElementById('wordErrorModal'));return;
     }
     chosenWord=button.dataset.word;chunkIndex=0;
     document.getElementById('wordChoices').hidden=true;
     document.querySelector('.word-gap').textContent=chosenWord;
-    wordResponse.textContent='Exact! Indiciul evidențiat face această continuare plauzibilă. Dacă schimbăm indiciul, se schimbă și ce se potrivește.';
+    wordResponse.textContent='Exact! Acum descoperim ce te-a ajutat să alegi.';
+    const oldClue=document.querySelector('.context-prompt-clue');
+    const clueButton=document.createElement('button');clueButton.className='context-clue context-discovery-trigger';clueButton.textContent=round.clue;clueButton.setAttribute('aria-haspopup','dialog');
+    oldClue.replaceWith(clueButton);
+    document.getElementById('wordInstruction').dataset.actionIcon='👆';
+    document.getElementById('wordInstruction').innerHTML='<b>Ai ales corect!</b> Apasă pe textul evidențiat cu albastru ca să descoperi ce înseamnă contextul.';
+    clueButton.addEventListener('click',()=>{
+      document.getElementById('contextDiscoveryQuote').textContent='„'+round.clue+'”';
+      document.getElementById('contextDiscoveryExplanation').textContent=wordRound===0?'„Mi-e foame!” face parte din context: îți spune că vorbim despre mâncare. De aceea „pizza” se potrivește mai bine decât „rachetă”. Contextul include și restul propoziției, nu doar indiciul evidențiat.':'„Vreau să zbor în spațiu!” face parte din context: acum vorbim despre o călătorie în spațiu. De aceea „rachetă” se potrivește. Același set de opțiuni, alt context!';
+      openDialog(document.getElementById('contextDiscoveryModal'));
+    });
+    clueButton.focus({preventScroll:true});
+  }));
+  function startWordGeneration(){
+    const round=wordRounds[wordRound];
     document.getElementById('wordInstruction').dataset.actionIcon='👆';
     document.getElementById('wordInstruction').innerHTML='<b>2 · Construiți răspunsul!</b> Apăsați pe „Adaugă următoarea bucată” până se termină propoziția.';
     document.getElementById('wordGeneration').hidden=false;
@@ -187,15 +250,22 @@
     const context=document.createElement('mark');context.className='context-clue generated-context';
     context.textContent=round.prefix+chosenWord;sentence.append(context);
     document.getElementById('nextChunk').disabled=false;
-    document.getElementById('chunkExplanation').textContent='Și textul nou intră în context! Pixel folosește acum toată propoziția de mai sus ca să o continue.';
+    document.getElementById('chunkExplanation').textContent='Și textul nou intră în context! AI folosește acum toată propoziția de mai sus ca să o continue.';
     document.getElementById('nextChunk').focus({preventScroll:true});
-  }));
+  }
+  document.getElementById('contextDiscoveryClose').addEventListener('click',()=>document.getElementById('contextDiscoveryModal').close());
+  document.getElementById('contextDiscoveryModal').addEventListener('close',()=>{if(chosenWord && document.getElementById('wordGeneration').hidden)startWordGeneration();});
+  resetWords();
   document.getElementById('nextChunk').addEventListener('click',()=>{
     const round=wordRounds[wordRound];if(!chosenWord || chunkIndex>=round.tail.length)return;
     const piece=document.createElement('span');piece.className='generated-chunk';piece.textContent=round.tail[chunkIndex++];document.getElementById('generatedSentence').append(piece);
-    if(chunkIndex===round.tail.length){document.getElementById('nextChunk').disabled=true;document.getElementById('chunkExplanation').textContent='Propoziția este completă! Puteți încerca și celălalt context.';document.getElementById('wordSuccessModal').showModal();}
+    if(chunkIndex===round.tail.length){document.getElementById('wordTakeaways').hidden=false;document.getElementById('nextChunk').disabled=true;document.getElementById('chunkExplanation').textContent='Propoziția este completă! Puteți încerca și celălalt context.';openDialog(document.getElementById('wordSuccessModal'));}
   });
-  document.getElementById('wordSuccessClose').addEventListener('click',()=>{document.getElementById('wordSuccessModal').close();document.getElementById('contextToggle').focus({preventScroll:true});});
+  document.getElementById('wordSuccessClose').addEventListener('click',()=>document.getElementById('wordSuccessModal').close());
+  document.getElementById('wordSuccessModal').addEventListener('close',()=>{
+    document.getElementById('contextAction').hidden=false;
+    const conclusion=document.querySelector('#wordTakeaways h3');conclusion.tabIndex=-1;conclusion.focus({preventScroll:true});conclusion.scrollIntoView({block:'nearest',behavior:'instant'});
+  });
   document.getElementById('wordErrorClose').addEventListener('click',()=>document.getElementById('wordErrorModal').close());
   document.getElementById('contextToggle').addEventListener('click',()=>{wordRound=(wordRound+1)%wordRounds.length;resetWords();wordResponse.textContent=wordRound===1?'S-a schimbat contextul: acum vrem să zburăm în spațiu, nu să mâncăm. Ce alegem?':'S-a schimbat contextul: acum ne este foame. Ce continuare se potrivește?';});
 
@@ -223,9 +293,11 @@
     document.getElementById('quizResultIcon').textContent=correct?'🏆':'😄';
     document.getElementById('quizResultTitle').textContent=correct?'CORECT! AI OCHI DE DETECTIV!':'UPS! HAI SĂ LĂMURIM.';
     document.getElementById('quizResultQuestion').textContent=current.q;
-    document.getElementById('quizResultAnswer').textContent='Răspunsul corect: '+(current.a?'ADEVĂRAT':'FALS');
-    document.getElementById('quizResultExplanation').textContent=current.why.replace('CORECT! ','');
-    quizResultModal.showModal();
+    document.getElementById('quizResultAnswer').textContent=questionIndex===0?'HALUCINAȚIE AI':questionIndex===1?'IMAGINILE ȘI VIDEOCLIPURILE POT FI GENERATE SAU MODIFICATE CU AI':'Răspunsul corect: '+(current.a?'ADEVĂRAT':'FALS');
+    document.getElementById('mediaLiteracyDemo').hidden=questionIndex!==1;
+    quizResultModal.classList.toggle('has-media-demo',questionIndex===1);
+    document.getElementById('quizResultExplanation').textContent=questionIndex===0?'O halucinație AI apare când un sistem generează o informație falsă sau inventată și o prezintă ca și cum ar fi adevărată. De exemplu, poate inventa titlul unei cărți și autorul ei, deși cartea nu există. Nu confunda tonul sigur cu adevărul: verifică sursa!':questionIndex===1?'O imagine poate arăta ca o fotografie fără să surprindă un eveniment real. La fel, un videoclip poate fi creat sau modificat. Privește exemplul de mai jos: am inclus intenționat anomalii pentru exercițiu.':current.why.replace('CORECT! ','');
+    openDialog(quizResultModal);
   }
   trueBtn.addEventListener('click',()=>answer(true));falseBtn.addEventListener('click',()=>answer(false));
   nextQuestion.addEventListener('click',()=>{questionIndex=(questionIndex+1)%quiz.length;displayQuestion()});
@@ -237,7 +309,7 @@
   let lastPromptWasGood=false;
   const exploredPrompts=new Set();
   function resetPromptExploration(){exploredPrompts.clear();document.getElementById('mentorReveal').hidden=true;document.getElementById('promptExploration').textContent='Explorează ambele carduri · 0 / 2';[good,bad].forEach(card=>card.classList.remove('explored'));}
-  document.getElementById('virButton').addEventListener('click',()=>document.getElementById('virModal').showModal());
+  document.getElementById('virButton').addEventListener('click',()=>openDialog(document.getElementById('virModal')));
   document.getElementById('virClose').addEventListener('click',()=>document.getElementById('virModal').close());
   document.getElementById('promptResultClose').addEventListener('click',()=>promptResultModal.close());
   promptResultModal.addEventListener('close',()=>{document.getElementById('mentorReveal').hidden=exploredPrompts.size!==2;(lastPromptWasGood?good:bad).focus({preventScroll:true});});
@@ -253,7 +325,7 @@
     document.getElementById('promptResultChoice').textContent=isGood?'„Explică-mi fracțiile folosind pizza, apoi testează-mă!”':'„Rezolvă-mi tema. Dă-mi doar răspunsurile.”';
     document.getElementById('promptResultExplanation').textContent=isGood?'Ceri o explicație, apoi exersezi chiar tu. AI poate fi antrenorul tău: îți oferă indicii și întrebări. Tu rezolvi și verifici dacă ai înțeles!':'Poate primești tema gata, dar nu exersezi cum să o rezolvi singur. E ca și cum altcineva ar face antrenamentul în locul tău! Cere explicații și indicii, apoi încearcă tu.';
     document.getElementById('promptResultClose').textContent=isGood?'AM ÎNȚELES! ✓':'ALEG DIN NOU ↺';
-    promptResultModal.showModal();
+    openDialog(promptResultModal);
   }
   good.addEventListener('click',()=>selectPrompt(true));bad.addEventListener('click',()=>selectPrompt(false));
   const takeawayCards=[...document.querySelectorAll('#takeawayTrack article')];
@@ -276,7 +348,7 @@
   document.getElementById('exitResultClose').addEventListener('click',()=>exitModal.close());
   const badgeModal=document.getElementById('badgeModal');
   exitModal.addEventListener('close',()=>{
-    if(exitCorrect){badgeModal.showModal();}
+    if(exitCorrect){openDialog(badgeModal);}
     else{document.querySelector('[data-exit="copy"]').focus({preventScroll:true});}
   });
   let restartingFromBadge=false;
@@ -290,7 +362,7 @@
     document.getElementById('exitResultExplanation').textContent=exitCorrect?'Curiozitate + verificare = superputere! Compară informația cu o sursă de încredere, precum manualul sau o sursă oficială. AI te ajută, tu verifici.':'Un răspuns poate suna convingător și totuși să fie inventat. Înainte să crezi sau să distribui informația, caută o sursă de încredere. Mai încearcă o dată!';
     document.getElementById('exitResultClose').textContent=exitCorrect?'CONTINUĂ →':'ALEG DIN NOU ↺';
     document.getElementById('exitFeedback').textContent=exitCorrect?'Provocare rezolvată! ✓':'Mai încearcă: cum poți verifica informația?';
-    exitModal.showModal();
+    openDialog(exitModal);
   }));
   document.getElementById('notesToggle').setAttribute('aria-expanded','false');
   render();

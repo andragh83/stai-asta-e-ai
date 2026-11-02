@@ -52,7 +52,7 @@ Importă repository-ul în Vercel. Fișierul `vercel.json` configurează build-u
 
 ## Ediția pentru proiecție
 
-- Pixel, Hamlet și Nova sunt personaje originale, desenate în CSS.
+- Interfața AI holografică este animată local în CSS; Hamlet și Nova sunt personaje originale.
 - Tranziții comic-book și bară de progres.
 - Schimbarea contextului în scena 4 arată de ce continuarea depinde de textul anterior; textele sunt pregătite, fără inferență AI.
 - Provocare finală cu insignă de detectiv, plus quiz cu feedback.
