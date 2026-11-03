@@ -70,7 +70,7 @@ Pasul 6 include o trusă interactivă cu structurarea lecției, analogii și exp
 
 ### Întrebările copiilor
 
-La final, butonul „Întrebările voastre” deschide un bonus cu toate cele 13 întrebări, inclusiv cele două adăugate despre utilizatori și furnizori, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. LEVEL 01 prezintă direct definiția AI și analogiile cu exemplele, sportul și rețeta digitală; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
+La final, butonul „Întrebările voastre” deschide un bonus cu toate cele 15 întrebări, inclusiv cele două adăugate despre utilizatori și furnizori, inclusiv subîntrebările. Răspunsurile au legături spre scene și surse unde este cazul. Bonusul nu intră în cele 10 minute. LEVEL 01 prezintă direct definiția AI și analogiile cu exemplele, sportul și rețeta digitală; pasul 4 distinge continuarea plauzibilă de verificarea faptelor. Conținutul și notițele sunt disponibile în RO/EN.
 
 Întrebarea despre următorii 10 ani include un singur grafic schematic, de la telegraf (1844) la AI generativ (2022–2024). Axa anilor este proporțională; înălțimea curbei nu reprezintă un indicator măsurat de progres sau inteligență. Sursele istorice sunt legate în răspuns. Nu este o predicție și nu echivalează progresul telecomunicațiilor cu două lansări de produse AI.
 
@@ -80,6 +80,8 @@ La final, butonul „Întrebările voastre” deschide un bonus cu toate cele 13
 
 ### Utilizarea AI și furnizorii
 
-Bonusul are 13 întrebări. Datele despre utilizarea AI generativ sunt Eurostat, UE, 2025 (16–24 versus 16–74 de ani; ultimele 3 luni înainte de sondaj), nu un clasament mondial sau după ore de utilizare. Întrebarea despre cel mai deștept AI prezintă opt furnizori/produse, cu logo-uri locale și detalii la click, fără un câștigător absolut. Descrierile au legături la furnizori; metodologia de comparație este legată la Artificial Analysis. Verificare editorială: 3 noiembrie 2026.
+Bonusul are 15 întrebări. Datele despre utilizarea AI generativ sunt Eurostat, UE, 2025 (16–24 versus 16–74 de ani; ultimele 3 luni înainte de sondaj), nu un clasament mondial sau după ore de utilizare. Întrebarea despre cel mai deștept AI prezintă opt furnizori/produse, cu logo-uri locale și detalii la click, fără un câștigător absolut. Descrierile au legături la furnizori; metodologia de comparație este legată la Artificial Analysis. Verificare editorială: 3 noiembrie 2026.
 
 Logo-uri: `@lobehub/icons-static-svg` 1.102.0, [Lobe Icons](https://github.com/lobehub/lobe-icons), MIT; licența este în `assets/ai-logos/LICENSE`. Mărcile aparțin titularilor lor; imaginile identifică produsele și nu indică afiliere.
+
+Întrebările despre inventator și anul dezvoltării explică contribuția colectivă, propunerea din 1955 și proiectul Dartmouth din 1956, cu legătură la documentul original și traducere în engleză.
